@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Object Testing</string>
+    <string-array name="stationData">
+        <item>22nd Street,22S,2</item>
+        <item>29th Avenue,29A,1</item>
+        <item>Aberdeen,ABD,2</item>
+        <item>Braid,BRD,2</item>
+        <item>Brentwood Town Center,BTC,2</item>
+        <item>Bridgeport,BRP,2</item>
+        <item>Broadway-City Hall,BCH,1</item>
+        <item>Burquitlam,BQM,3</item>
+        <item>Burrard,BRR,1</item>
+        <item>Columbia,CLB,2</item>
+        <item>Commercial-Broadway,CMB,1</item>
+        <item>Coquitlam Central,CQC,3</item>
+        <item>Edmonds,EDM,2</item>
+        <item>Gateway,GTW,3</item>
+        <item>Gilmore,GLM,2</item>
+        <item>Granville,GVL,1</item>
+        <item>Holdom,HLD,2</item>
+        <item>Inlet Center,INL,3</item>
+        <item>Joyce Collingwood,JCW,1</item>
+        <item>King Edward,KED,1</item>
+        <item>King George,KGG,3</item>
+        <item>Larfarge Lake-Douglas,LLD,3</item>
+        <item>Lake City Way,LCW,2</item>
+        <item>Langara-49th Avenue,L49,1</item>
+        <item>Lansdowne,LDN,2</item>
+        <item>Lincoln,LCL,3</item>
+        <item>Lougheed Town Center,LTC,2</item>
+        <item>Main Street-Science World,MSW,1</item>
+        <item>Marine Drive,MRD,1</item>
+        <item>Metrotown,MTT,2</item>
+        <item>Moody Center,MDC,3</item>
+        <item>Nanaimo,NNM,1</item>
+        <item>New Westminster,NWM,2</item>
+        <item>Oakridge-41st Avenue,O41,1</item>
+        <item>Olympic Village,OLV,1</item>
+        <item>Patterson,PTS,2</item>
+        <item>Production Way-University,PWU,2</item>
+        <item>Renfrew,RFW,1</item>
+        <item>Richmond-Brighouse,RBG,2</item>
+        <item>Royal Oak,ROK,2</item>
+        <item>Rupert,RPT,1</item>
+        <item>Sapperton,SPT,2</item>
+        <item>Scott Road,SCR,3</item>
+        <item>Sea Island Center,SIC,2</item>
+        <item>Sperling-Burnaby Lake,SBL,2</item>
+        <item>Stadium-Chinatown,SCT,1</item>
+        <item>Surrey Central,SRC,3</item>
+        <item>Templeton,TPL,2</item>
+        <item>Vancouver City Center,VAN,1</item>
+        <item>VCC-Clark,VCC,1</item>
+        <item>Waterfront,WTF,1</item>
+        <item>Yaletown-Roundhouse,YRH,1</item>
+        <item>YVR-Airport,YVR,2</item>
+    </string-array>
+    <string-array name="stationConnections"></string-array>
+</resources>
