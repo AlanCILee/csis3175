@@ -13,8 +13,6 @@ public class Station
     private int zone;
     private boolean isOpen = true;
     private boolean hasConstruction = false;
-    private boolean hasElevator = true;
-    private boolean hasBusTerm = true;
     private boolean isTransferPoint = false;
 
     public ArrayList<String> connectingStations; //should this be public?
@@ -51,16 +49,6 @@ public class Station
     public boolean getConstruction()
     {
         return this.hasConstruction;
-    }
-
-    public boolean getElevator()
-    {
-        return this.hasElevator;
-    }
-
-    public boolean getBusTerm()
-    {
-        return this.hasBusTerm;
     }
 
     public boolean getTransferPoint()

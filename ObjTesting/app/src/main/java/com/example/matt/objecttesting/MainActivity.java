@@ -1,5 +1,6 @@
 package com.example.matt.objecttesting;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
 {
     public static ArrayList<Station> masterList; //public??
+    public static DataProcessor alGore; //AL-GORE-ITHMS
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         this.prepare();
+        alGore = new DataProcessor();
     }
 
     //this function should prep any data structures we'll need
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     {
         masterList = new ArrayList<Station>();
 
+        //this shit needs to be in the MainActivity since we're using getResources() to grab the string array
         String[] stnData = getResources().getStringArray(R.array.stationData);
         String[] s = getResources().getStringArray(R.array.stationData);
 
@@ -54,30 +58,13 @@ public class MainActivity extends AppCompatActivity
         station.setAdapter(adapter);
     }
 
-    //finds and returns a Station object matching the argument name
-    public Station findStation(String stnName)
-    {
-        Station result = new Station("Error", "ERR", 0);
-
-        for (int i = 0; i < masterList.size(); i++)
-        {
-            if (stnName.compareTo(masterList.get(i).getFullName()) == 0)
-            {
-                result = masterList.get(i);
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    //data testing, called by btnTest
+    //THIS IS A TESTING FUNCTION DON'T INCLUDE IT IN ANYTHING RETARD
     public void testData(View v)
     {
         Spinner station = (Spinner)findViewById(R.id.spnStations);
         String selectedName = station.getSelectedItem().toString();
 
-        Station testStn = findStation(selectedName);
+        Station testStn = alGore.findStation(masterList, selectedName);
         String testName = testStn.getFullName();
         String testCode = testStn.getCode();
         int testZone = testStn.getZone();
