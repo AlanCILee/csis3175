@@ -1,59 +1,113 @@
 <resources>
     <string name="app_name">Object Testing</string>
-    <string-array name="stationData">
-        <item>22nd Street,22S,2</item>
-        <item>29th Avenue,29A,1</item>
-        <item>Aberdeen,ABD,2</item>
-        <item>Braid,BRD,2</item>
-        <item>Brentwood Town Center,BTC,2</item>
-        <item>Bridgeport,BRP,2</item>
-        <item>Broadway-City Hall,BCH,1</item>
-        <item>Burquitlam,BQM,3</item>
-        <item>Burrard,BRR,1</item>
-        <item>Columbia,CLB,2</item>
-        <item>Commercial-Broadway,CMB,1</item>
-        <item>Coquitlam Central,CQC,3</item>
-        <item>Edmonds,EDM,2</item>
-        <item>Gateway,GTW,3</item>
-        <item>Gilmore,GLM,2</item>
-        <item>Granville,GVL,1</item>
-        <item>Holdom,HLD,2</item>
-        <item>Inlet Center,INL,3</item>
-        <item>Joyce Collingwood,JCW,1</item>
-        <item>King Edward,KED,1</item>
-        <item>King George,KGG,3</item>
-        <item>Larfarge Lake-Douglas,LLD,3</item>
-        <item>Lake City Way,LCW,2</item>
-        <item>Langara-49th Avenue,L49,1</item>
-        <item>Lansdowne,LDN,2</item>
-        <item>Lincoln,LCL,3</item>
-        <item>Lougheed Town Center,LTC,2</item>
-        <item>Main Street-Science World,MSW,1</item>
-        <item>Marine Drive,MRD,1</item>
-        <item>Metrotown,MTT,2</item>
-        <item>Moody Center,MDC,3</item>
-        <item>Nanaimo,NNM,1</item>
-        <item>New Westminster,NWM,2</item>
-        <item>Oakridge-41st Avenue,O41,1</item>
-        <item>Olympic Village,OLV,1</item>
-        <item>Patterson,PTS,2</item>
-        <item>Production Way-University,PWU,2</item>
-        <item>Renfrew,RFW,1</item>
-        <item>Richmond-Brighouse,RBG,2</item>
-        <item>Royal Oak,ROK,2</item>
-        <item>Rupert,RPT,1</item>
-        <item>Sapperton,SPT,2</item>
-        <item>Scott Road,SCR,3</item>
-        <item>Sea Island Center,SIC,2</item>
-        <item>Sperling-Burnaby Lake,SBL,2</item>
-        <item>Stadium-Chinatown,SCT,1</item>
-        <item>Surrey Central,SRC,3</item>
-        <item>Templeton,TPL,2</item>
-        <item>Vancouver City Center,VAN,1</item>
-        <item>VCC-Clark,VCC,1</item>
-        <item>Waterfront,WTF,1</item>
-        <item>Yaletown-Roundhouse,YRH,1</item>
-        <item>YVR-Airport,YVR,2</item>
+    <string-array name="stationNames">
+        <item>22nd Street</item>
+        <item>29th Avenue</item>
+        <item>Aberdeen</item>
+        <item>Braid</item>
+        <item>Brentwood Town Center</item>
+        <item>Bridgeport</item>
+        <item>Broadway-City Hall</item>
+        <item>Burquitlam</item>
+        <item>Burrard</item>
+        <item>Columbia</item>
+        <item>Commercial-Broadway</item>
+        <item>Coquitlam Central</item>
+        <item>Edmonds</item>
+        <item>Gateway</item>
+        <item>Gilmore</item>
+        <item>Granville</item>
+        <item>Holdom</item>
+        <item>Inlet Center</item>
+        <item>Joyce Collingwood</item>
+        <item>King Edward</item>
+        <item>King George</item>
+        <item>Larfarge Lake-Douglas</item>
+        <item>Lake City Way</item>
+        <item>Langara-49th Avenue</item>
+        <item>Lansdowne</item>
+        <item>Lincoln</item>
+        <item>Lougheed Town Center</item>
+        <item>Main Street-Science World</item>
+        <item>Marine Drive</item>
+        <item>Metrotown</item>
+        <item>Moody Center</item>
+        <item>Nanaimo</item>
+        <item>New Westminster</item>
+        <item>Oakridge-41st Avenue</item>
+        <item>Olympic Village</item>
+        <item>Patterson</item>
+        <item>Production Way-University</item>
+        <item>Renfrew</item>
+        <item>Richmond-Brighouse</item>
+        <item>Royal Oak</item>
+        <item>Rupert</item>
+        <item>Sapperton</item>
+        <item>Scott Road</item>
+        <item>Sea Island Center</item>
+        <item>Sperling-Burnaby Lake</item>
+        <item>Stadium-Chinatown</item>
+        <item>Surrey Central</item>
+        <item>Templeton</item>
+        <item>Vancouver City Center</item>
+        <item>VCC-Clark</item>
+        <item>Waterfront</item>
+        <item>Yaletown-Roundhouse</item>
+        <item>YVR-Airport</item>
     </string-array>
-    <string-array name="stationConnections"></string-array>
+    <string-array name="stationData">
+        <item>22S,2,true,false,false,EDM-EXPO-WFRONT:NWM-EXPO-KGEORGE:NWM-EXPO-PWAYU</item>
+        <item>29A,1,true,false,false,NAN-EXPO-WFRONT:JCW-EXPO-KGEORGE:JCW-EXPO-PWAYU</item>
+        <item>ABD,2,true,false,false,BRP-CAN-WFRONT:LDN-CAN-RICHBR</item>
+        <item>BRD,2,true,false,false,SAP-EXPO-WFRONT:LTC-EXPO-PWAYU</item>
+        <item>BTC,2,true,false,false,HOL-MILL-LLDOUG:GIL-MILL-VCCCL</item>
+        <item>BRP,2,true,false,true,MRD-CAN-WFRONT:ABD-CAN-RICHBR:TPL-CAN-YVRA</item>
+        <item>BCH,1,true,false,false,OLV-CAN-WFRONT:KED-CAN-RICHBR:KED-CAN-YVRA</item>
+        <item>BRQ,3,true,false,false,MDC-MILL-LLDOUG:LTC-MILL-VCCCL</item>
+        <item>BUR,1,true,false,false,WTF-EXPO-WFRONT:GVL-EXPO-PWAYU:GVL-EXPO-KGEORGE</item>
+        <item>CLB,2,true,false,true,SAP-EXPO-WFRONT:SCR-EXPO-KGEORGE:NWM-EXPO-WFRONT</item>
+        <item>CCMB,1,true,true,true,MSW-EXPO-WFRONT:NAN-EXPO-KGEORGE:NAN-EXPO-PWAYU:VCC-MILL-VCCCL:REN-MILL-LLDOUG</item>
+        <item>CQC,3,true,false,false,LCL-EXPO-LLDOUG:INL-MILL-VCCCL</item>
+        <item>EDM,2,true,false,false,22S-EXPO-KGEORGE:22S-EXPO-PWAYU:MET-EXPO-VCCCL</item>
+        <item>GTW,3,true,false,false,SCR-EXPO-WFRONT:SUR-EXPO-KGEORGE</item>
+        <item>GIL,2,true,false,false,RUP-MILL-VCCCL:BTC-MILL-LLDOUG</item>
+        <item>GVL,1,true,false,false,BUR-EXPO-WFRONT:SCT-EXPO-KGEORGE:SCT-EXPO-PWAYU</item>
+        <item>HOL,2,true,false,false,BTC-MILL-VCCCL:SBL-MILL-LLDOUG</item>
+        <item>INL,3,true,false,false,CQC-MILL-LLDOUG:MDC-MILL-VCCCL</item>
+        <item>JCW,1,true,true,false,PAT-EXPO-KGEORGE:PAT-EXPO-PWAYU:29A-EXPO-WFRONT</item>
+        <item>KED,1,true,false,false,BCH-CAN-WFRONT:O41-CAN-RICHBR:O41-CAN-YVRA</item>
+        <item>KGG,3,true,false,false,SUR-EXPO-WFRONT</item>
+        <item>LLD,3,true,false,false,LCL-MILL-VCCCL</item>
+        <item>LCW,2,true,false,false,PWU-EXPO-LLDOUG:SBL-EXPO-VCCCL</item>
+        <item>L49,1,true,false,false,O41-CAN-WFRONT:MRD-CAN-RICHBR:MRD-CAN-YVRA</item>
+        <item>LDN,2,true,false,false,RBG-CAN-RICHBR:ABD-CAN-WFRONT</item>
+        <item>LCL,3,true,false,false,LLD-MILL-LLDOUG:CQC-MILL-VCCCL</item>
+        <item>LTC,2,true,false,true,PWU-EXPO-PWAYU:BRD-EXPO-WFRONT:PWU-MILL-VCCCL:BRQ-MILL-LLDOUG</item>
+        <item>MSW,1,true,false,false,SCT-EXPO-WFRONT:CMB-EXPO-PWAYU:CMB-EXPO-KGEORGE</item>
+        <item>MRD,1,true,false,false,L49-CAN-WFRONT:BRP-CAN-RICHBR:BRP-CAN-YVRA</item>
+        <item>MET,2,true,true,false,ROK-EXPO-KGEORGE:ROK-EXPO-PWAYU:PAT-EXPO-WFRONT</item>
+        <item>MDC,3,true,false,false,INL-MILL-LLDOUG:BRQ-MILL-VCCCL</item>
+        <item>NAN,1,true,false,false,29A-EXPO-KGEORGE:29A-EXPO-PWAYU:CMB-EXPO-WFRONT</item>
+        <item>NWM,2,true,false,false,CMB-EXPO-PWAYU:CMB-EXPO-KGEORGE:22S-EXPO-WFRONT</item>
+        <item>O41,1,true,false,false,KED-CAN-WFRONT:L49-CAN-RICHBR:L49-CAN-YVRA</item>
+        <item>OLV,1,true,false,false,YRH-CAN-WFRONT:BCH-CAN-RICHBR:BCH-CAN-YVRA</item>
+        <item>PAT,2,true,false,false,JCW-EXPO-WFRONT:MET-EXPO-KGEORGE:MET-EXPO-PWAYU</item>
+        <item>PWU,2,true,false,false,LCW-MILL-VCCCL:LTC-MILL-LLDOUG:LTC-EXPO-WFRONT</item>
+        <item>REN,1,true,false,false,CMB-MILL-VCCCL:RUP-MILL-LLDOUG</item>
+        <item>RBG,2,true,false,false,LDN-CAN-WFRONT</item>
+        <item>ROK,2,true,false,false,EDM-EXPO-KGEORGE:EDM-EXPO-PWAYU:MET-EXPO-WFRONT</item>
+        <item>RUP,1,true,false,false,REN-MILL-VCCCL:GIL-MILL-LLDOUG</item>
+        <item>SAP,2,true,false,false,BRD-EXPO-PWAYU:CLB-EXPO-WFRONT</item>
+        <item>SCR,3,true,false,false,CLB-EXPO-WFRONT:GTW-EXPO-KGEORGE</item>
+        <item>SEA,2,true,false,false,YVR-CAN-YVRA:TPL-CAN-WFRONT</item>
+        <item>SBL,2,true,false,false,HOL-MILL-VCCCL:LCW-MILL-LLDOUG</item>
+        <item>SCT,1,true,false,false,GVL-EXPO-WFRONT:MSW-EXPO-KGEORGE:MSW-EXPO-PWAYU</item>
+        <item>SUR,3,true,false,false,GTW-EXPO-WFRONT:KGG-EXPO-KGEORGE</item>
+        <item>TPL,2,true,false,false,SEA-CAN-YVRA:BRP-CAN-WFRONT</item>
+        <item>VAN,1,true,false,false,WTF-CAN-WFRONT:YRH-CAN-RICHBR:YRH-CAN-YVRA</item>
+        <item>VCC,1,true,false,false,CMB-MILL-LLDOUG</item>
+        <item>WTF,1,true,false,true,BUR-EXPO-PWAYU:BUR-EXPO-KGEORGE:VAN-CAN-RICHBR:VAN-CAN-YVRA</item>
+        <item>YRH,1,true,false,false,VAN-CAN-WFRONT:OLV-CAN-RICHBR:OLV-CAN-YVRA</item>
+        <item>YVR,2,true,false,false,SEA-CAN-WFRONT</item>
+    </string-array>
 </resources>
