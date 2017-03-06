@@ -48,4 +48,14 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/btnShow" />
 
+    <Button
+        android:text="GPS"
+        android:onClick="btnGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnShow"
+        android:layout_toStartOf="@+id/btnShow"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/btnGPS" />
+
 </RelativeLayout>

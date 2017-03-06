@@ -110,4 +110,8 @@ public class MainActivity extends AppCompatActivity
         return path;
     }
 
+    public void btnGPS(View v){
+        startActivity(new Intent(this, Tracking.class));
+    }
+
 }
