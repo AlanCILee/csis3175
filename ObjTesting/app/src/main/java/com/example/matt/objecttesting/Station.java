@@ -1,12 +1,13 @@
 package com.example.matt.objecttesting;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Matt on 12/02/2017.
  */
 
-public class Station
+public class Station implements Serializable
 {
     private String fullName;
     private String code;

@@ -1,12 +1,13 @@
 package com.example.matt.objecttesting;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Matt on 12/02/2017.
  */
 
-public class Path
+public class Path implements Serializable
 {
     private Station startStn;
     private Station endStn;
@@ -41,6 +42,10 @@ public class Path
     public void setZoneChanges(int a)
     {
         this . zoneChanges = a;
+    }
+
+    public void addStops(Station station){
+        this.pathStops.add(station);
     }
 
 }

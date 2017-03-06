@@ -1,5 +1,6 @@
 package com.example.matt.objecttesting;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity
 {
     public static ArrayList<Station> masterList; //public??
     public static DataProcessor alGore; //AL-GORE-ITHMS
+    public static ArrayList<Path> pathList;     //List of Paths
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -78,4 +80,34 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    public void showPath(View v){
+        // Need to call find shortest paths algorithm
+        pathList = new ArrayList<Path>();
+        pathList.add(generateTestCase1());
+
+        Intent intent = new Intent(MainActivity.this, Show.class);
+        intent.putExtra("paths", pathList);
+        startActivity(intent);
+
+
+    }
+
+    //Test Case 1 : Lake City Way to New Westminster
+    public Path generateTestCase1(){
+        Station departStation = alGore.findStation(masterList, "Lake City Way");
+        Station arrivalStation = alGore.findStation(masterList, "New Westminster");
+
+        Path path = new Path(departStation, arrivalStation);
+        path.addStops(departStation);
+        path.addStops(alGore.findStation(masterList, "Production Way-University"));
+        path.addStops(alGore.findStation(masterList, "Lougheed Town Center"));
+        path.addStops(alGore.findStation(masterList, "Braid"));
+        path.addStops(alGore.findStation(masterList, "Sapperton"));
+        path.addStops(alGore.findStation(masterList, "Columbia"));
+        path.addStops(arrivalStation);
+        path.setNumStops(6);
+        return path;
+    }
+
 }
