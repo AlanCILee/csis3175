@@ -17,4 +17,23 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/tvPosition" />
+
+    <Button
+        android:text="Near Station"
+        android:onClick="findNearStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="122dp"
+        android:id="@+id/btnNearStation" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnNearStation"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="56dp"
+        android:id="@+id/tvNearStations" />
 </RelativeLayout>

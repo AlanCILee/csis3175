@@ -152,6 +152,10 @@ public class GpsInfo implements LocationListener {
         return lon;
     }
 
+    public Location getCurrentLocation(){
+        return this.currentLocation;
+    }
+
     public boolean isGetLocation() {
         locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
         // GPS Setting Status

@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity
         {
             String[] data = stnData[i].split(",");
 
-            Location location = new Location("");
-            location.setLatitude(Double.parseDouble(data[6]));
-            location.setLongitude(Double.parseDouble(data[7]));
+//            Location location = new Location("");
+//            location.setLatitude(Double.parseDouble(data[6]));
+//            location.setLongitude(Double.parseDouble(data[7]));
 
-            Station temp = new Station(stnNames[i], data[0], Integer.parseInt(data[1]), Boolean.parseBoolean(data[2]), Boolean.parseBoolean(data[3]), Boolean.parseBoolean(data[4]), data[5], location);
+            Station temp = new Station(stnNames[i], data[0], Integer.parseInt(data[1]), Boolean.parseBoolean(data[2]), Boolean.parseBoolean(data[3]), Boolean.parseBoolean(data[4]), data[5], Double.parseDouble(data[6]), Double.parseDouble(data[7]) );
             masterList.add(temp);
         }
     }
@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void btnGPS(View v){
-        startActivity(new Intent(this, Tracking.class));
+        Intent intent = new Intent(MainActivity.this, Tracking.class);
+        intent.putExtra("stations", masterList);
+        startActivity(intent);
     }
 
 }
