@@ -62,7 +62,9 @@ public class GpsInfo implements LocationListener {
 
 //        if ( ContextCompat.checkSelfPermission( this.mContext, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED
 //                && ContextCompat.checkSelfPermission( this.mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            Log.d("GPS","Not Permitted");
+//            Log.d("GPS", "Not Permitted");
+//            return;
+//        }
 //            // Should we show an explanation?
 //            if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
 //                    Manifest.permission.READ_CONTACTS)) {
@@ -87,20 +89,7 @@ public class GpsInfo implements LocationListener {
 //        }
 
         try {
-            locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
-
-            // GPS Setting Status
-            isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-            // Network Setting Status
-            isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            if (!isGPSEnabled && !isNetworkEnabled) {
-                    // GPS && Network is disabled
-                showSettingsAlert();
-            } else {
-                this.isGetLocation = true;
-
+            if(isGetLocation()){
                 // Getting Data From Network
                 if (isNetworkEnabled) {
                     Log.d("GPS","isNetworkEnabled");
@@ -137,7 +126,7 @@ public class GpsInfo implements LocationListener {
     }
 
     /**
-     * GPS 종료
+     * GPS Stop
      * */
 //    public void stopUsingGPS(){
 //        if(locationManager != null){
@@ -145,9 +134,7 @@ public class GpsInfo implements LocationListener {
 //        }
 //    }
 
-    /**
-     * 위도값을 가져옵니다.
-     * */
+
     public double getLatitude(){
 //        if(location != null){
 //            lat = location.getLatitude();
@@ -155,9 +142,7 @@ public class GpsInfo implements LocationListener {
         return lat;
     }
 
-    /**
-     * 경도값을 가져옵니다.
-     * */
+
     public double getLongitude(){
 //        if(location != null){
 //            lon = location.getLongitude();
@@ -165,32 +150,35 @@ public class GpsInfo implements LocationListener {
         return lon;
     }
 
-    /**
-     * GPS 나 wife 정보가 켜져있는지 확인합니다.
-     * */
     public boolean isGetLocation() {
-        return this.isGetLocation;
+        locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+        // GPS Setting Status
+        isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        // Network Setting Status
+        isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if(isGPSEnabled || isNetworkEnabled)
+            isGetLocation = true;
+
+        return isGetLocation;
     }
 
-    /**
-     * GPS 정보를 가져오지 못했을때
-     * 설정값으로 갈지 물어보는 alert 창
-     * */
+
     public void showSettingsAlert(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
-        alertDialog.setTitle("GPS 사용유무셋팅");
-        alertDialog.setMessage("GPS 셋팅이 되지 않았을수도 있습니다. 설정창으로 가시겠습니까?");
+        alertDialog.setTitle("Location Setup");
+        alertDialog.setMessage("Location Service is not available. Would you setup this option?");
 
-                // OK 를 누르게 되면 설정창으로 이동합니다.
-                alertDialog.setPositiveButton("Settings",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int which) {
-                                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                mContext.startActivity(intent);
-                            }
-                        });
-        // Cancle 하면 종료 합니다.
+        // OK
+        alertDialog.setPositiveButton("Settings",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int which) {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        mContext.startActivity(intent);
+                    }
+                });
+        // Cancle
         alertDialog.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -201,10 +189,14 @@ public class GpsInfo implements LocationListener {
         alertDialog.show();
     }
 
-
-//    public IBinder onBind(Intent arg0) {
-//        return null;
-//    }
+    //Save Location
+    private void updateCoordinates(Location location){
+        if (location != null) {
+            lat = location.getLatitude();
+            lon = location.getLongitude();
+            Log.d("GPS","updateCoordinates :" + lat + ", "+ lon);
+        }
+    }
 
     @Override
     public void onLocationChanged(Location location) {
@@ -230,12 +222,4 @@ public class GpsInfo implements LocationListener {
 
     }
 
-    //Save Location
-    private void updateCoordinates(Location location){
-        if (location != null) {
-            lat = location.getLatitude();
-            lon = location.getLongitude();
-            Log.d("GPS","updateCoordinates :" + lat + ", "+ lon);
-        }
-    }
 }
