@@ -1,6 +1,7 @@
 package com.example.matt.objecttesting;
 
 import android.content.Intent;
+import android.location.Location;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,7 +43,12 @@ public class MainActivity extends AppCompatActivity
         for (int i = 0; i < stnData.length; i++)
         {
             String[] data = stnData[i].split(",");
-            Station temp = new Station(stnNames[i], data[0], Integer.parseInt(data[1]), Boolean.parseBoolean(data[2]), Boolean.parseBoolean(data[3]), Boolean.parseBoolean(data[4]), data[5]);
+
+            Location location = new Location("");
+            location.setLatitude(Double.parseDouble(data[6]));
+            location.setLongitude(Double.parseDouble(data[7]));
+
+            Station temp = new Station(stnNames[i], data[0], Integer.parseInt(data[1]), Boolean.parseBoolean(data[2]), Boolean.parseBoolean(data[3]), Boolean.parseBoolean(data[4]), data[5], location);
             masterList.add(temp);
         }
     }

@@ -1,5 +1,7 @@
 package com.example.matt.objecttesting;
 
+import android.location.Location;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,12 +17,12 @@ public class Station implements Serializable
     private boolean isOpen;
     private boolean hasConstruction;
     private boolean isTransferPoint;
-
+    private Location location;
     public ArrayList<String> connectingStations; //should this be public?
 
     //Constructor
     //note: once all this is initialized, there should be no reason to change the information ie no need for mutator functions
-    Station(String n, String c, int z, boolean o, boolean con, boolean t, String connectionString)
+    Station(String n, String c, int z, boolean o, boolean con, boolean t, String connectionString, Location location)
     {
         this.fullName = n;
         this.code = c;
@@ -28,6 +30,7 @@ public class Station implements Serializable
         this.isOpen = o;
         this.hasConstruction = con;
         this.isTransferPoint = t;
+        this.location = location;
         connectingStations = new ArrayList<String>();
 
         if (connectionString.contains(":"))

@@ -30,6 +30,8 @@ public class GpsInfo implements LocationListener {
     boolean isGetLocation = false;
 
     Location location;
+    Location currentLocation;
+
     double lat;
     double lon;
     int testCnt = 0;
@@ -192,6 +194,7 @@ public class GpsInfo implements LocationListener {
     //Save Location
     private void updateCoordinates(Location location){
         if (location != null) {
+            currentLocation = location;
             lat = location.getLatitude();
             lon = location.getLongitude();
             Log.d("GPS","updateCoordinates :" + lat + ", "+ lon);
