@@ -1,0 +1,19 @@
+LINES
+=========================================
+EXPO	: Expo Line
+MILL	: Millenium Line
+CAN	: Canada Line
+
+Note: Evergreen extension considered part of Millenium Line
+
+
+
+TRAINS (TERMINUS STATION)
+=========================================
+KGEORGE	: King George
+PWAYU	: Production Way/University
+RICHBR	: Richmond-Brighouse
+WFRONT	: Waterfront
+YVRA	: YVR-Airport
+VCCCL	: VCC-Clark
+LLDOUG	: Lafarge Lake-Douglas
