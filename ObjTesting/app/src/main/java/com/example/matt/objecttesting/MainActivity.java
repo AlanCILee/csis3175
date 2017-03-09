@@ -91,11 +91,17 @@ public class MainActivity extends AppCompatActivity
     public void testPath(View v)
     {
         //Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "New Westminster"));
-        Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "New Westminster"));
+        Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "MET"));
 
         TextView output = (TextView)findViewById(R.id.txtOutput);
-        String name = test.pathStops.get(0).getFullName();
-        output.setText(name);
+
+        for (int i = 0; i < test.pathStops.size(); i++)
+        {
+            String name = test.pathStops.get(i).getFullName();
+            output.append("\n" + name);
+    }
+
+
     }
 
     public void showPath(View v){

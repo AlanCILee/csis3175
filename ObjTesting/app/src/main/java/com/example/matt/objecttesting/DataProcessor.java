@@ -1,6 +1,7 @@
 package com.example.matt.objecttesting;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Matt on 17/02/2017.
@@ -75,6 +76,7 @@ public class DataProcessor
         if (result.traverse(start))
             System.out.println("SUCCESS");
 
+        Collections.reverse(result.pathStops);
 
         return result;
     }

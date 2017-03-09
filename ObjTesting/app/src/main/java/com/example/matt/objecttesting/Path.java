@@ -90,26 +90,35 @@ public class Path implements Serializable
         if (!current.equals(this.startStn)) //??? I only think I know what I'm doing
         {
             previous = this.getPreviousStn();
-            this.pathStops.add(current);
+            //this.pathStops.add(current);
         }
         else
         {
             this.setPreviousStn(current);
+            //this.pathStops.add(current);
         }
 
         if (current.equals(this.endStn)) //stop if end
         {
             end = true;
+            this.pathStops.add(current); //adds ending station
+            //return end;
         }
         else
         {
             for (int i = 0; i < current.connectingStations.size(); i++)
             {
                 String code = current.connectingStations.get(i).split("-")[0];
-                if (valid(previous, MainActivity.alGore.findStation(MainActivity.masterList, code)) && (pathStops.contains(MainActivity.alGore.findStation(MainActivity.masterList, code)) == false)) //holy crap this line
+                if (!end && valid(previous, MainActivity.alGore.findStation(MainActivity.masterList, code)) && (pathStops.contains(MainActivity.alGore.findStation(MainActivity.masterList, code)) == false)) //holy crap this line
                 {
                     this.setPreviousStn(current);
-                    traverse(MainActivity.alGore.findStation(MainActivity.masterList, code));
+                    end = traverse(MainActivity.alGore.findStation(MainActivity.masterList, code));
+
+                    if (end) //adds the stations "going back up"
+                    {
+                        this.pathStops.add(current);
+                    }
+
                 }
             }
         }
@@ -119,10 +128,12 @@ public class Path implements Serializable
 
     public boolean valid(Station prev, Station going)
     {
+        boolean valid = true;
+
         if (going.equals(prev) || going.equals(null))
-            return false;
-        else
-            return true;
+            valid = false;
+
+        return valid;
     }
 
 
