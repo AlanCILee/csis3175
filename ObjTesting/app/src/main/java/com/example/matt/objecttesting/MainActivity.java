@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
     public void testPath(View v)
     {
         //Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "New Westminster"));
-        Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "MET"));
+        Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "NWM"));
 
         TextView output = (TextView)findViewById(R.id.txtOutput);
 

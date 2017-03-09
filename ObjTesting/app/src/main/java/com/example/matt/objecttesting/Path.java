@@ -83,19 +83,15 @@ public class Path implements Serializable
         Station current = stn;
         Station previous = null;
 
-        System.out.println(current.getFullName());
-        //System.out.println(current.connectingStations.size());
-        //System.out.println(current.connectingStations.get(0));
+        System.out.println("LOOKING AT " + current.getFullName());
 
         if (!current.equals(this.startStn)) //??? I only think I know what I'm doing
         {
             previous = this.getPreviousStn();
-            //this.pathStops.add(current);
         }
         else
         {
             this.setPreviousStn(current);
-            //this.pathStops.add(current);
         }
 
         if (current.equals(this.endStn)) //stop if end
@@ -106,21 +102,24 @@ public class Path implements Serializable
         }
         else
         {
-            for (int i = 0; i < current.connectingStations.size(); i++)
-            {
-                String code = current.connectingStations.get(i).split("-")[0];
-                if (!end && valid(previous, MainActivity.alGore.findStation(MainActivity.masterList, code)) && (pathStops.contains(MainActivity.alGore.findStation(MainActivity.masterList, code)) == false)) //holy crap this line
-                {
-                    this.setPreviousStn(current);
-                    end = traverse(MainActivity.alGore.findStation(MainActivity.masterList, code));
+             if (!end) {
+                 for (int i = 0; i < current.connectingStations.size(); i++) {
+                     String code = current.connectingStations.get(i).split("-")[0];
 
-                    if (end) //adds the stations "going back up"
-                    {
-                        this.pathStops.add(current);
-                    }
+                     if (pathStops.contains(MainActivity.alGore.findStation(MainActivity.masterList, code)) == false)//holy crap this line
+                     {
+                         this.setPreviousStn(current);
+                         end = traverse(MainActivity.alGore.findStation(MainActivity.masterList, code));
 
-                }
-            }
+                         if (end) //adds the stations "going back up"
+                         {
+                             System.out.println("ADDING" + current.getFullName());
+                             this.pathStops.add(current);
+                         }
+
+                     }
+                 }
+             }
         }
 
         return end;
