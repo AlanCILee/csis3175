@@ -72,7 +72,9 @@ public class DataProcessor
     {
         Path result = new Path(start, end);
 
-        //BLAH BLAH BLAH FREAKY CODE ALGORITHMS GO HERE
+        if (result.traverse(start))
+            System.out.println("SUCCESS");
+
 
         return result;
     }

@@ -16,9 +16,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
-    public static ArrayList<Station> masterList; //public??
-    public static DataProcessor alGore; //AL-GORE-ITHMS
-    public static ArrayList<Path> pathList;     //List of Paths
+    public static ArrayList<Station> masterList;    //public??
+    public static DataProcessor alGore;             //AL-GORE-ITHMS
+    public static ArrayList<Path> pathList;         //List of Paths
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -85,6 +85,12 @@ public class MainActivity extends AppCompatActivity
             output.append(connectorName + " via the " + train + " train on the " + line + "\n");
         }
 
+    }
+
+    //THIS IS ALSO A TESTING METHOD INCLUDE IT IN THE PRODUCTION VERSION AND YOU ARE VERY STUPID
+    public void testPath()
+    {
+        Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "New Westminster"));
     }
 
     public void showPath(View v){

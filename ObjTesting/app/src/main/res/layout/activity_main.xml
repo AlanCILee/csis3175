@@ -58,4 +58,13 @@
         android:layout_marginEnd="10dp"
         android:id="@+id/btnGPS" />
 
+    <Button
+        android:text="PATH TEST"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTest"
+        android:id="@+id/btnPathTest"
+        android:layout_alignEnd="@+id/btnTest"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
