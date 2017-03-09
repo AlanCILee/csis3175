@@ -88,9 +88,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     //THIS IS ALSO A TESTING METHOD INCLUDE IT IN THE PRODUCTION VERSION AND YOU ARE VERY STUPID
-    public void testPath()
+    public void testPath(View v)
     {
+        //Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "New Westminster"));
         Path test = alGore.findRoute(alGore.findStation(masterList, "Braid"),alGore.findStation(masterList, "New Westminster"));
+
+        TextView output = (TextView)findViewById(R.id.txtOutput);
+        String name = test.pathStops.get(0).getFullName();
+        output.setText(name);
     }
 
     public void showPath(View v){

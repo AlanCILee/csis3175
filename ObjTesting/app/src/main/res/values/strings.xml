@@ -97,8 +97,8 @@
         <item>RBG,2,true,false,false,LDN-CAN-WFRONT,49.168118,-123.136297</item>
         <item>ROK,2,true,false,false,EDM-EXPO-KGEORGE:EDM-EXPO-PWAYU:MET-EXPO-WFRONT,49.220077,-122.988497</item>
         <item>RUP,1,true,false,false,REN-MILL-VCCCL:GIL-MILL-LLDOUG,49.260820,-123.032892</item>
-        <item>SAP,2,true,false,false,BRD-EXPO-PWAYU:CLB-EXPO-WFRONT,49.224687,-122.889399</item>
-        <item>SCR,3,true,false,false,CLB-EXPO-WFRONT:GTW-EXPO-KGEORGE,49.204432,-122.874198</item>
+        <item>SAP,2,true,false,false,BRD-EXPO-PWAYU:COL-EXPO-WFRONT,49.224687,-122.889399</item>
+        <item>SCR,3,true,false,false,COL-EXPO-WFRONT:GTW-EXPO-KGEORGE,49.204432,-122.874198</item>
         <item>SEA,2,true,false,false,YVR-CAN-YVRA:TPL-CAN-WFRONT,49.193027,-123.157972</item>
         <item>SBL,2,true,false,false,HOL-MILL-VCCCL:LCW-MILL-LLDOUG,49.259156,-122.963886</item>
         <item>SCT,1,true,false,false,GVL-EXPO-WFRONT:MSW-EXPO-KGEORGE:MSW-EXPO-PWAYU,49.279281,-123.109137</item>

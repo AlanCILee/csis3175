@@ -83,6 +83,10 @@ public class Path implements Serializable
         Station current = stn;
         Station previous = null;
 
+        System.out.println(current.getFullName());
+        //System.out.println(current.connectingStations.size());
+        //System.out.println(current.connectingStations.get(0));
+
         if (!current.equals(this.startStn)) //??? I only think I know what I'm doing
         {
             previous = this.getPreviousStn();
@@ -99,10 +103,10 @@ public class Path implements Serializable
         }
         else
         {
-            for (int i = 0; i < stn.connectingStations.size(); i++)
+            for (int i = 0; i < current.connectingStations.size(); i++)
             {
-                String code = stn.connectingStations.get(i).split("-")[0];
-                if (valid(previous, MainActivity.alGore.findStation(MainActivity.masterList, code))) //holy crap this line
+                String code = current.connectingStations.get(i).split("-")[0];
+                if (valid(previous, MainActivity.alGore.findStation(MainActivity.masterList, code)) && (pathStops.contains(MainActivity.alGore.findStation(MainActivity.masterList, code)) == false)) //holy crap this line
                 {
                     this.setPreviousStn(current);
                     traverse(MainActivity.alGore.findStation(MainActivity.masterList, code));
