@@ -12,6 +12,7 @@ public class Path implements Serializable
     private Station startStn;
     private Station endStn;
     private int numStops;
+    private int numTransfers;
     private int zoneChanges;
     public ArrayList<Station> pathStops; //should this be public?
 
@@ -21,6 +22,7 @@ public class Path implements Serializable
         this.endStn = b;
         this.numStops = 0;
         this.zoneChanges = 0;
+        this.numTransfers = 0;
         this.pathStops = new ArrayList<Station>();
     }
 
@@ -32,6 +34,16 @@ public class Path implements Serializable
     public void setNumStops(int a)
     {
         this.numStops = a;
+    }
+
+    public int getNumTransfers()
+    {
+        return this.numTransfers;
+    }
+
+    public void setNumTransfers(int a)
+    {
+        this.numTransfers = a;
     }
 
     public int getZoneChanges()
