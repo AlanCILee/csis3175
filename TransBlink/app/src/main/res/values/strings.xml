@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TransBlink</string>
+    <string name="btnStnInfo">Station Information</string>
+    <string name="btnNearest">Find Nearest Station</string>
+    <string name="btnMap">Skytrain Stations Map</string>
+    <string name="btnTrip">Choose Stations For Trip</string>
+    <string name="btnAbout">About Us</string>
+    <string name="btnChange">ChangeLog</string>
+    <string name="btnThemes">Themes</string>
+</resources>
