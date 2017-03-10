@@ -10,4 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.brandon.transblink.StationMap">
 
+    <TextView
+        android:text="This Area will include either a simple skytrain map or have the coordinate system that shows where you are in relation to each station and they are dots using their coords."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textViewTemporary2" />
 </RelativeLayout>

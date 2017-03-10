@@ -10,4 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.brandon.transblink.ChangeLog">
 
+    <TextView
+        android:text="Have some sort of Scrolling Text Wall here. with bold titles like Version 0.42 and then a bunch of info about changes we made in bullet points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textViewTemporary" />
 </RelativeLayout>

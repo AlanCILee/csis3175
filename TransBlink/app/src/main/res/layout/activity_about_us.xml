@@ -10,4 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.brandon.transblink.AboutUs">
 
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:id="@+id/expandableListViewAboutUs"
+        android:layout_height="match_parent"
+        android:divider="#4286f4"
+        android:dividerHeight="1dp"
+        android:childDivider="#f4a041"
+        android:listSelector="#f4a041"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
