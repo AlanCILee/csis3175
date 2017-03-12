@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,23 @@ public class LocationStation extends AppCompatActivity {
 
         gpsTracking();
         findNearStation();
+
+        ListStationAdapater adapater = new ListStationAdapater(this, stationDistance, ListStationAdapater.DISP.NEARSTATION);
+        ListView listStation = (ListView)findViewById(R.id.listViewNearbyStations);
+        listStation.setAdapter(adapater);
+
+        listStation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(LocationStation.this, TripPlanner.class);
+                intent.putExtra("caller","LocationStation");
+                intent.putExtra("startStation",stationDistance[i]);
+                intent.putExtra("stations",stations);
+
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 
     private void gpsTracking(){
@@ -75,11 +93,6 @@ public class LocationStation extends AppCompatActivity {
                 return (int)(o1.getDistance() - o2.getDistance());
             }
         });
-
-        ListStationAdapater adapater = new ListStationAdapater(this, stationDistance);
-        ListView listStation = (ListView)findViewById(R.id.listViewNearbyStations);
-        listStation.setAdapter(adapater);
-
     }
 
     public void showMap(View v){
@@ -94,6 +107,5 @@ public class LocationStation extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Please wait receiving location",Toast.LENGTH_SHORT).show();
         }
-
     }
 }

@@ -54,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
     //activity teleporters ---------------------------------------------------
     public void goToTripPlanner(View v)
     {
-        startActivity(new Intent(MainActivity.this,TripPlanner.class));
+        Intent intent = new Intent(MainActivity.this, TripPlanner.class);
+        intent.putExtra("caller","MainActivity");
+        intent.putExtra("stations",masterList);
+
+        startActivity(intent);
     }
     public void goToStationMap(View v)
     {
@@ -85,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void goToStationInfo(View v)
     {
-        startActivity(new Intent(MainActivity.this,StationInformation.class));
+        Intent intent = new Intent(MainActivity.this, StationInformation.class);
+        intent.putExtra("caller","MainActivity");
+        intent.putExtra("stations",masterList);
+
+        startActivity(intent);
     }
 }

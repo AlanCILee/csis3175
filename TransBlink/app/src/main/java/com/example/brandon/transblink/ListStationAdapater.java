@@ -19,13 +19,17 @@ import java.util.ArrayList;
  */
 
 public class ListStationAdapater extends ArrayAdapter{
+    public static enum DISP { NEARSTATION };        // Display Mode for other List
+
     private Activity context;
     private Station[] stations;
+    private DISP displayMode;
 
-    public ListStationAdapater(Activity context, Station[] stations) {
+    public ListStationAdapater(Activity context, Station[] stations, DISP mode ) {
         super(context, R.layout.list_station, stations);
         this.stations = stations;
         this.context = context;
+        this.displayMode = mode;
     }
 
     @Override
@@ -45,7 +49,9 @@ public class ListStationAdapater extends ArrayAdapter{
         lineColors[1].setBackgroundColor(0);
 
         txtTitle.setText(stations[position].getFullName());
-        txtDesc.setText(String.valueOf((int)(stations[position].getDistance()) + "m"));
+
+        if(displayMode == DISP.NEARSTATION)
+            txtDesc.setText(String.valueOf((int)(stations[position].getDistance()) + "m"));
 
         Station.Lines[] lines = stations[position].getLines();
         for(int i=0; i<lines.length; i++){
