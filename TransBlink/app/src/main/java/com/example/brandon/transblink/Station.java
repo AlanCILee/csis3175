@@ -1,5 +1,7 @@
 package com.example.brandon.transblink;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 /**
@@ -17,12 +19,15 @@ public class Station implements Serializable
     private double latitude;
     private double longitude;
     private double distance;
+    private Lines[] lines;
 
     public ArrayList<String> connectingStations; //should this be public?
-
+    public static enum Lines {
+        Millennium, Canada, Expo
+    }
     //Constructor
     //note: once all this is initialized, there should be no reason to change the information ie no need for mutator functions
-    Station(String n, String c, int z, boolean o, boolean con, boolean t, String connectionString, double latitude, double longitude)
+    Station(String n, String c, int z, boolean o, boolean con, boolean t, String connectionString, double latitude, double longitude, String lineInfo)
     {
         this.fullName = n;
         this.code = c;
@@ -33,6 +38,11 @@ public class Station implements Serializable
         this.latitude = latitude;
         this.longitude = longitude;
 
+        updateConnectionStations(connectionString);
+        updateLineInfo(lineInfo);
+    }
+
+    private void updateConnectionStations(String connectionString){
         connectingStations = new ArrayList<String>();
 
         if (connectionString.contains(":"))
@@ -47,6 +57,29 @@ public class Station implements Serializable
         else
         {
             connectingStations.add(connectionString);
+        }
+    }
+
+    private void updateLineInfo(String lineInfo){
+        String[] arrLine = lineInfo.split(":");
+        lines = new Lines[arrLine.length];
+
+        for(int i=0; i<arrLine.length; i++){
+            Lines getLine = null;
+            switch(arrLine[i]){
+                case "EXPO":
+                    getLine = Lines.Expo;
+                    break;
+
+                case "MILL":
+                    getLine = Lines.Millennium;
+                    break;
+
+                case "CAN":
+                    getLine = Lines.Canada;
+                    break;
+            }
+            lines[i] = getLine;
         }
     }
 
@@ -90,4 +123,5 @@ public class Station implements Serializable
 
     public double getLongitude() { return this.longitude; }
 
+    public Lines[] getLines() { return this.lines; }
 }

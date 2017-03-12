@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
                     Boolean.parseBoolean(data[2]),      //Data2 :
                     Boolean.parseBoolean(data[3]),      //Data3 :
                     Boolean.parseBoolean(data[4]),      //Data4 :
-                    data[5],                            //Data0 : Station Connection Info
-                    Double.parseDouble(data[6]),        //Data0 : Station Latitude
-                    Double.parseDouble(data[7]) );      //Data0 : Station Longitude
-
+                    data[5],                            //Data5 : Station Connection Info
+                    Double.parseDouble(data[6]),        //Data6 : Station Latitude
+                    Double.parseDouble(data[7]),        //Data7 : Station Longitude
+                    data[8] );                          //Data8 : Line information
             masterList.add(temp);
         }
     }

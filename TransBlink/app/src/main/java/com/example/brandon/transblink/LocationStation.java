@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +75,10 @@ public class LocationStation extends AppCompatActivity {
                 return (int)(o1.getDistance() - o2.getDistance());
             }
         });
+
+        ListStationAdapater adapater = new ListStationAdapater(this, stationDistance);
+        ListView listStation = (ListView)findViewById(R.id.listViewNearbyStations);
+        listStation.setAdapter(adapater);
 
     }
 
