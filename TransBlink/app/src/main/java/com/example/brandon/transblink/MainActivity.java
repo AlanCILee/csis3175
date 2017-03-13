@@ -7,8 +7,9 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    private ArrayList<Station> masterList;
+public class MainActivity extends AppCompatActivity
+{
+    public static ArrayList<Station> masterList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +17,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.initialize();
+
+        //TESTING: UNCOMMENT AT YOUR OWN PERIL
+        //DataProcessor.testAlgorithm();
     }
 
-    private void initialize(){
+    private void initialize()
+    {
         initStations();
     }
 
     // Station initialize with station information string
-    private void initStations(){
+    private void initStations()
+    {
         masterList = new ArrayList<Station>();
 
         String[] stnData = getResources().getStringArray(R.array.stationData);
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     data[5],                            //Data5 : Station Connection Info
                     Double.parseDouble(data[6]),        //Data6 : Station Latitude
                     Double.parseDouble(data[7]),        //Data7 : Station Longitude
-                    data[8] );                          //Data8 : Line information
+                    data[8] );                          //Data8 : Line information //but why
             masterList.add(temp);
         }
     }

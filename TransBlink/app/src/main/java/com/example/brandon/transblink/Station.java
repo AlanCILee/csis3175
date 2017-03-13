@@ -38,10 +38,26 @@ public class Station implements Serializable
         this.latitude = latitude;
         this.longitude = longitude;
 
-        updateConnectionStations(connectionString);
+        //updateConnectionStations(connectionString);
+        connectingStations = new ArrayList<String>();
+        if (connectionString.contains(":"))
+        {
+            String[] connections = connectionString.split(":");
+
+            for (int i = 0; i < connections.length; i++)
+            {
+                connectingStations.add(connections[i]);
+            }
+        }
+        else
+        {
+            connectingStations.add(connectionString);
+        }
+
         updateLineInfo(lineInfo);
     }
 
+    //why does this exist
     private void updateConnectionStations(String connectionString){
         connectingStations = new ArrayList<String>();
 
@@ -60,6 +76,7 @@ public class Station implements Serializable
         }
     }
 
+    //what is this? a station can be on multiple lines
     private void updateLineInfo(String lineInfo){
         String[] arrLine = lineInfo.split(":");
         lines = new Lines[arrLine.length];
