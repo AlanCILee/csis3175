@@ -24,6 +24,8 @@ public class LocationStation extends AppCompatActivity {
     private Location currentLocation = null;
     private double latitude = 0.0;
     private double longitude = 0.0;
+    ListStationAdapater adapater;
+    ListView listStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,10 @@ public class LocationStation extends AppCompatActivity {
 
         Intent intent = getIntent();
         stations = (ArrayList<Station>) intent.getSerializableExtra("stations");
+        listStation = (ListView)findViewById(R.id.listViewNearbyStations);
 
         gpsTracking();
         findNearStation();
-
-        ListStationAdapater adapater = new ListStationAdapater(this, stationDistance, ListStationAdapater.DISP.NEARSTATION);
-        ListView listStation = (ListView)findViewById(R.id.listViewNearbyStations);
-        listStation.setAdapter(adapater);
 
         listStation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,25 +73,32 @@ public class LocationStation extends AppCompatActivity {
     }
 
     private void findNearStation() {
-        Location newLocation = new Location("");
-        stationDistance = new Station[stations.size()];
+        if(currentLocation != null){
+            Location newLocation = new Location("");
+            stationDistance = new Station[stations.size()];
 
-        for (Station station : stations) {
-            newLocation.setLatitude(station.getLatitude());
-            newLocation.setLongitude(station.getLongitude());
-            double distance = currentLocation.distanceTo(newLocation);
-            station.setDistance(distance);
-            Log.d(station.getFullName(), distance + "m");
-        }
-
-        stations.toArray(stationDistance);
-        Arrays.sort(stationDistance, new Comparator<Station>() {
-
-            @Override
-            public int compare(Station o1, Station o2) {
-                return (int)(o1.getDistance() - o2.getDistance());
+            for (Station station : stations) {
+                newLocation.setLatitude(station.getLatitude());
+                newLocation.setLongitude(station.getLongitude());
+                double distance = currentLocation.distanceTo(newLocation);
+                station.setDistance(distance);
+                Log.d(station.getFullName(), distance + "m");
             }
-        });
+
+            stations.toArray(stationDistance);
+            Arrays.sort(stationDistance, new Comparator<Station>() {
+
+                @Override
+                public int compare(Station o1, Station o2) {
+                    return (int)(o1.getDistance() - o2.getDistance());
+                }
+            });
+
+            if(adapater == null && stationDistance != null){
+                adapater = new ListStationAdapater(this, stationDistance, ListStationAdapater.DISP.NEARSTATION);
+                listStation.setAdapter(adapater);
+            }
+        }
     }
 
     public void showMap(View v){
