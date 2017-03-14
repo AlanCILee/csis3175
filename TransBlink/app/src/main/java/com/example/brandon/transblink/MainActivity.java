@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity
         this.initialize();
 
         //TESTING: UNCOMMENT AT YOUR OWN PERIL
-        //DataProcessor.testAlgorithm();
+        DataProcessor.testAlgorithm();
     }
 
     private void initialize()

@@ -89,7 +89,7 @@ public class DataProcessor
     public static void testAlgorithm()
     {
         Station start = DataProcessor.findStation(MainActivity.masterList, "BRD");
-        Station end = DataProcessor.findStation(MainActivity.masterList, "MET");
+        Station end = DataProcessor.findStation(MainActivity.masterList, "LTC");
 
         Path test = new Path(start, end);
 

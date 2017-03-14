@@ -17,7 +17,7 @@ public class Path implements Serializable
     private int numTransfers;
     private int zoneChanges;
     public ArrayList<Station> pathStops; //should this be public?
-    //private ArrayList<Station> master; //I sure hope this works
+    private ArrayList<String> traversed;
 
     Path(Station a, Station b)
     {
@@ -28,7 +28,7 @@ public class Path implements Serializable
         this.zoneChanges = 0;
         this.numTransfers = 0;
         this.pathStops = new ArrayList<Station>();
-        this.pathStops.add(a);
+        this.traversed = new ArrayList<String>();
 
         //this.master = MainActivity.masterList;
 
@@ -80,6 +80,7 @@ public class Path implements Serializable
         Station current = stn;
 
         System.out.println("NOW AT " + current.getFullName() + " ON THE WAY TO " + this.endStn.getFullName());
+        this.traversed.add(current.getCode());
 
         if (current.equals(this.endStn)) //stop if end
         {
@@ -90,26 +91,41 @@ public class Path implements Serializable
         }
         else
         {
-                for (int i = 0; i < current.connectingStations.size(); i++)
+            for (int i = 0; i < current.connectingStations.size(); i++)
+            {
+                System.out.println("IN FOR LOOP, ITERATION NO." + i);
+
+                String code = current.connectingStations.get(i).split("-")[0];
+
+                if (!end && valid(code)) //if not yet at the destination
                 {
-                    String code = current.connectingStations.get(i).split("-")[0];
-
-                    if (!end && pathStops.contains((DataProcessor.findStation(MainActivity.masterList, code)))) //if not yet at the destination
-                    {
-                        this.setPreviousStn(current);
-                        System.out.println("TRAVERSE TO " + code);
-                        end = traverse(DataProcessor.findStation(MainActivity.masterList, code)); //keep going
-                    }
-
-                    if (end)
-                    {
-                        System.out.println("ADDING " + current.getFullName());
-                        this.pathStops.add(current);
-                        break; //get out of the loop
-                    }
+                    this.setPreviousStn(current);
+                    System.out.println("TRAVERSE TO " + code);
+                    end = traverse(DataProcessor.findStation(MainActivity.masterList, code)); //keep going
                 }
+
+                if (end)
+                {
+                    System.out.println("ADDING " + current.getFullName());
+                    //if (!pathStops.contains(current))
+                    this.pathStops.add(current);
+                    break; //get out of the loop
+                }
+            }
         }
 
+        System.out.println("END OF TRAVERSE");
         return end;
+    }
+
+    public boolean valid(String nextCode)
+    {
+        boolean v = true;
+        Station testStn = DataProcessor.findStation(MainActivity.masterList, nextCode);
+
+        if (this.pathStops.contains(testStn) || testStn.equals(this.getPreviousStn()) || this.traversed.contains(nextCode))
+            v = false;
+
+        return v;
     }
 }
