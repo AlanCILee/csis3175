@@ -96,7 +96,7 @@
         <item>KED,1,true,false,false,BCH-CAN-WFRONT:O41-CAN-RICHBR:O41-CAN-YVRA,49.249246,-123.115732,CAN</item>
         <item>KGG,3,true,false,false,SUR-EXPO-WFRONT,49.182732,-122.844657,EXPO</item>
         <item>LLD,3,true,false,false,LCL-MILL-VCCCL,49.285571,-122.791651,MILL</item>
-        <item>LCW,2,true,false,false,PWU-EXPO-LLDOUG:SBL-EXPO-VCCCL,49.254610,-122.938975,EXPO</item>
+        <item>LCW,2,true,false,false,PWU-EXPO-LLDOUG:SBL-MILL-VCCCL,49.254610,-122.938975,MILL</item>
         <item>L49,1,true,false,false,O41-CAN-WFRONT:MRD-CAN-RICHBR:MRD-CAN-YVRA,49.226357,-123.116234,CAN</item>
         <item>LDN,2,true,false,false,RBG-CAN-RICHBR:ABD-CAN-WFRONT,49.174736,-123.136537,CAN</item>
         <item>LCL,3,true,false,false,LLD-MILL-LLDOUG:CQC-MILL-VCCCL,49.280306,-122.794216,MILL</item>
