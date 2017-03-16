@@ -79,6 +79,7 @@ public class DataProcessor
         {
             System.out.println("SUCCESS");
             Collections.reverse(result.pathStops); //need to reverse order
+            result.setNumStops(result.pathStops.size() - 1);
             routePaths.add(result);
         }
 
