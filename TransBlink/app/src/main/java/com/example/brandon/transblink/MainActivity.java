@@ -10,12 +10,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
 {
     public static ArrayList<Station> masterList;
+    public int themeSel = R.style.AppTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent =  getIntent();
+        themeSel =  intent.getIntExtra("theme", 0 );
+        setTheme(themeSel);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         this.initialize();
 
         //TESTING: UNCOMMENT AT YOUR OWN PERIL
@@ -62,13 +66,17 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, TripPlanner.class);
         intent.putExtra("caller","MainActivity");
+        intent.putExtra("theme",themeSel);
         intent.putExtra("stations",masterList);
 
         startActivity(intent);
     }
     public void goToStationMap(View v)
     {
-        startActivity(new Intent(MainActivity.this,StationMap.class));
+        Intent intent = new Intent(MainActivity.this, StationMap.class);
+        intent.putExtra("theme",themeSel);
+
+        startActivity(intent);
     }
     public void goToNearestStation(View v)
     {
@@ -76,6 +84,7 @@ public class MainActivity extends AppCompatActivity
         if(gps.isGetLocation()) {
             Intent intent = new Intent(MainActivity.this, LocationStation.class);
             intent.putExtra("stations", masterList);
+            intent.putExtra("theme",themeSel);
             startActivity(intent);
         }else{
             gps.showSettingsAlert();
@@ -83,20 +92,33 @@ public class MainActivity extends AppCompatActivity
     }
     public void goToAboutUs(View v)
     {
-        startActivity(new Intent(MainActivity.this,AboutUs.class));
+
+        Intent intent = new Intent(MainActivity.this, AboutUs.class);
+        intent.putExtra("theme",themeSel);
+
+        startActivity(intent);
+
+
     }
     public void goToChangeLog(View v)
     {
-        startActivity(new Intent(MainActivity.this,ChangeLog.class));
+        Intent intent = new Intent(MainActivity.this, ChangeLog.class);
+        intent.putExtra("theme",themeSel);
+
+        startActivity(intent);
     }
     public void goToThemeChange(View v)
     {
-        startActivity(new Intent(MainActivity.this,ThemeChange.class));
+        Intent intent = new Intent(MainActivity.this, ThemeChange.class);
+        intent.putExtra("theme",themeSel);
+
+        startActivity(intent);
     }
     public void goToStationInfo(View v)
     {
         Intent intent = new Intent(MainActivity.this, StationInformation.class);
         intent.putExtra("caller","MainActivity");
+        intent.putExtra("theme",themeSel);
         intent.putExtra("stations",masterList);
 
         startActivity(intent);

@@ -26,13 +26,16 @@ public class LocationStation extends AppCompatActivity {
     private double longitude = 0.0;
     ListStationAdapater adapater;
     ListView listStation;
+    private int themeSel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent =  getIntent();
+        themeSel =  intent.getIntExtra("theme", 0 );
+        setTheme(themeSel);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_station);
 
-        Intent intent = getIntent();
         stations = (ArrayList<Station>) intent.getSerializableExtra("stations");
         listStation = (ListView)findViewById(R.id.listViewNearbyStations);
 
