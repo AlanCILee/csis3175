@@ -38,6 +38,7 @@ public class LocationStation extends AppCompatActivity {
 
         stations = (ArrayList<Station>) intent.getSerializableExtra("stations");
         listStation = (ListView)findViewById(R.id.listViewNearbyStations);
+        stationDistance = new Station[stations.size()];
 
         gpsTracking();
         findNearStation();
@@ -78,7 +79,6 @@ public class LocationStation extends AppCompatActivity {
     private void findNearStation() {
         if(currentLocation != null){
             Location newLocation = new Location("");
-            stationDistance = new Station[stations.size()];
 
             for (Station station : stations) {
                 newLocation.setLatitude(station.getLatitude());
@@ -97,10 +97,12 @@ public class LocationStation extends AppCompatActivity {
                 }
             });
 
-            if(adapater == null && stationDistance != null){
+            if(adapater == null){
                 adapater = new ListStationAdapater(this, stationDistance, ListStationAdapater.DISP.NEARSTATION);
                 listStation.setAdapter(adapater);
             }
+
+            adapater.notifyDataSetChanged();
         }
     }
 
