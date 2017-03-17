@@ -1,0 +1,55 @@
+<string-array name="stationNames">
+        <item>22nd Street</item>
+        <item>29th Avenue</item>
+        <item>Aberdeen</item>
+        <item>Braid</item>
+        <item>Brentwood Town Center</item>
+        <item>Bridgeport</item>
+        <item>Broadway-City Hall</item>
+        <item>Burquitlam</item>
+        <item>Burrard</item>
+        <item>Columbia</item>
+        <item>Commercial-Broadway</item>
+        <item>Coquitlam Central</item>
+        <item>Edmonds</item>
+        <item>Gateway</item>
+        <item>Gilmore</item>
+        <item>Granville</item>
+        <item>Holdom</item>
+        <item>Inlet Center</item>
+        <item>Joyce Collingwood</item>
+        <item>King Edward</item>
+        <item>King George</item>
+        <item>Larfarge Lake-Douglas</item>
+        <item>Lake City Way</item>
+        <item>Langara-49th Avenue</item>
+        <item>Lansdowne</item>
+        <item>Lincoln</item>
+        <item>Lougheed Town Center</item>
+        <item>Main Street-Science World</item>
+        <item>Marine Drive</item>
+        <item>Metrotown</item>
+        <item>Moody Center</item>
+        <item>Nanaimo</item>
+        <item>New Westminster</item>
+        <item>Oakridge-41st Avenue</item>
+        <item>Olympic Village</item>
+        <item>Patterson</item>
+        <item>Production Way-University</item>
+        <item>Renfrew</item>
+        <item>Richmond-Brighouse</item>
+        <item>Royal Oak</item>
+        <item>Rupert</item>
+        <item>Sapperton</item>
+        <item>Scott Road</item>
+        <item>Sea Island Center</item>
+        <item>Sperling-Burnaby Lake</item>
+        <item>Stadium-Chinatown</item>
+        <item>Surrey Central</item>
+        <item>Templeton</item>
+        <item>Vancouver City Center</item>
+        <item>VCC-Clark</item>
+        <item>Waterfront</item>
+        <item>Yaletown-Roundhouse</item>
+        <item>YVR-Airport</item>
+    </string-array>

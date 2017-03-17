@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -55,49 +54,26 @@ public class MainActivity extends AppCompatActivity
         InputStream is = am.open("data.txt");
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
-        String[] stnNames = getResources().getStringArray(R.array.stationNames);
 
-        int counter = 0; // there needs to be a better way to do this bit
         String line = "";
 
         while ((line = br.readLine()) != null)
         {
-            //line = br.readLine();
-            //System.out.println(line);
             String[] data = line.split(",");
-            Station temp = new Station(stnNames[counter],
-                    data[0],                            //Data0 : Station Short name
-                    Integer.parseInt(data[1]),          //Data1 :
-                    Boolean.parseBoolean(data[2]),      //Data2 :
-                    Boolean.parseBoolean(data[3]),      //Data3 :
-                    Boolean.parseBoolean(data[4]),      //Data4 :
-                    data[5],                            //Data5 : Station Connection Info
-                    Double.parseDouble(data[6]),        //Data6 : Station Latitude
-                    Double.parseDouble(data[7]),        //Data7 : Station Longitude
-                    data[8] );                          //Data8 : Line information //but why
-            masterList.add(temp);
-
-            counter++;
-        }
-
-        /*
-        String[] stnData = getResources().getStringArray(R.array.stationData);
-        for (int i = 0; i < stnData.length; i++)
-        {
-            String[] data = stnData[i].split(",");
-            Station temp = new Station(stnNames[i],
-                    data[0],                            //Data0 : Station Short name
-                    Integer.parseInt(data[1]),          //Data1 :
-                    Boolean.parseBoolean(data[2]),      //Data2 :
-                    Boolean.parseBoolean(data[3]),      //Data3 :
-                    Boolean.parseBoolean(data[4]),      //Data4 :
-                    data[5],                            //Data5 : Station Connection Info
-                    Double.parseDouble(data[6]),        //Data6 : Station Latitude
-                    Double.parseDouble(data[7]),        //Data7 : Station Longitude
-                    data[8] );                          //Data8 : Line information //but why
+            Station temp = new Station(
+                    data[0],                            //Data0 : Station Full name
+                    data[1],                            //Data1 : Station Short name
+                    Integer.parseInt(data[2]),          //Data2 : Zone Number
+                    Boolean.parseBoolean(data[3]),      //Data3 : Open Status
+                    Boolean.parseBoolean(data[4]),      //Data4 : Construction Status
+                    Boolean.parseBoolean(data[5]),      //Data5 : Transfer Flag
+                    data[6],                            //Data6 : Station Connection Info
+                    Double.parseDouble(data[7]),        //Data7 : Station Latitude
+                    Double.parseDouble(data[8]),        //Data8 : Station Longitude
+                    data[9]                             //Data9 : Line information
+            );
             masterList.add(temp);
         }
-        */
     }
 
     // Setter and Getters ---------------------------------------------------
