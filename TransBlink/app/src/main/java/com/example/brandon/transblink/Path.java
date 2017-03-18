@@ -19,7 +19,7 @@ public class Path implements Serializable
     public ArrayList<Station> pathStops; //should this be public?
     private ArrayList<String> traversed;
 
-    Path(Station a, Station b)
+    public Path(Station a, Station b)
     {
         this.startStn = a;
         this.endStn = b;
@@ -32,6 +32,19 @@ public class Path implements Serializable
 
         //this.master = MainActivity.masterList;
 
+    }
+
+    //copy constructor
+    public Path(Path old)
+    {
+        this.startStn = old.startStn;
+        this.endStn = old.endStn;
+        this.previousStn = null;
+        this.numStops = 0;
+        this.zoneChanges = 0;
+        this.numTransfers = 0;
+        this.pathStops = old.pathStops;
+        this.traversed = old.traversed;
     }
 
     public int getNumStops()
@@ -127,5 +140,17 @@ public class Path implements Serializable
             v = false;
 
         return v;
+    }
+
+    public void addPath(Path add)
+    {
+        for (int i = 0; i < add.pathStops.size(); i++)
+        {
+            if (!this.pathStops.contains(add.pathStops.get(i)))
+            {
+                this.pathStops.add(add.pathStops.get(i));
+                this.numStops = this.pathStops.size();
+            }
+        }
     }
 }

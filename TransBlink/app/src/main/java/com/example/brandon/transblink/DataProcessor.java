@@ -72,15 +72,27 @@ public class DataProcessor
     //Note: this will be the production version method
     public static ArrayList<Path> findRoutes(Station start, Station end)
     {
-        ArrayList<Path> routePaths = new ArrayList<Path>();
-        Path result = new Path(start, end);
+        ArrayList<Path> routePaths = new ArrayList<Path>(); // list of valid paths
 
-        if (result.traverse(start))
+        Path first = new Path(start, end);                  // first path
+        first.traverse(start);
+        Collections.reverse(first.pathStops);               // need to reverse order
+        first.setNumStops(first.pathStops.size() - 1);
+        routePaths.add(first);
+
+
+        for (int i = 0; i < first.pathStops.size(); i++)
         {
-            System.out.println("SUCCESS");
-            Collections.reverse(result.pathStops); //need to reverse order
-            result.setNumStops(result.pathStops.size() - 1);
-            routePaths.add(result);
+            if (first.pathStops.get(i).getTransferPoint())
+            {
+                Path newPath = new Path(first);
+                newPath.pathStops.subList(i+1,newPath.pathStops.size()).clear(); // removes all paths after the transfer point
+
+                for (int j = 0; j < newPath.pathStops.size(); j++)
+                {
+
+                }
+            }
         }
 
         return routePaths;
