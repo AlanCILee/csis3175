@@ -17,7 +17,7 @@ public class Path implements Serializable
     private int numTransfers;
     private int zoneChanges;
     public ArrayList<Station> pathStops; //should this be public?
-    private ArrayList<String> traversed;
+    public ArrayList<String> traversed;
 
     public Path(Station a, Station b)
     {
@@ -127,7 +127,7 @@ public class Path implements Serializable
             }
         }
 
-        System.out.println("END OF TRAVERSE");
+        //System.out.println("END OF TRAVERSE");
         return end;
     }
 

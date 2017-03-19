@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         this.initialize();
 
         //TESTING: UNCOMMENT AT YOUR OWN PERIL
-        //DataProcessor.testAlgorithm();
+        DataProcessor.testAlgorithm();
     }
 
     //why is do we need to call this single method that only calls a single method?

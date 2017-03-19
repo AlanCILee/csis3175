@@ -80,6 +80,10 @@ public class DataProcessor
         first.setNumStops(first.pathStops.size() - 1);
         routePaths.add(first);
 
+        /*
+            HEY
+            what this shit needs to do is scan through each path, and every transfer point generate a new path
+         */
 
         for (int i = 0; i < first.pathStops.size(); i++)
         {
@@ -98,23 +102,49 @@ public class DataProcessor
         return routePaths;
     }
 
-    //THIS IS A TESTING METHOD
+    //STAGE ONE METHOD FOR ROUTE GENERATION
+    // In the production version, this method needs to be modified to return an ArrayList of valid paths
     public static void testAlgorithm()
     {
-        Station start = DataProcessor.findStation(MainActivity.masterList, "BRD");
-        Station end = DataProcessor.findStation(MainActivity.masterList, "LTC");
+        Station start = DataProcessor.findStation(MainActivity.masterList, "KGG");  // Actual Start
+        Station end = DataProcessor.findStation(MainActivity.masterList, "NWM");    // Actual End
+        ArrayList<Path> testGroup = new ArrayList<Path>();
 
-        Path test = new Path(start, end);
-
-        if (test.traverse(start))
+        //generate a path for each connector in the start station
+        for (int i = 0; i < start.connectingStations.size(); i++)
         {
-            System.out.println("SUCCESS");
-            Collections.reverse(test.pathStops);
+            String code = start.connectingStations.get(i).split("-")[0];
+            Station stn = DataProcessor.findStation(MainActivity.masterList,code);
 
-            for (int i = 0; i < test.pathStops.size(); i++)
+            Path test = new Path(stn, end);
+            test.setPreviousStn(start);             // ensures the path doesn't go back to the start
+            test.traversed.add(start.getCode());
+
+            if (test.traverse(stn))
             {
-                System.out.println(test.pathStops.get(i).getFullName());
+                test.pathStops.add(start);              // add the start to the path
+                Collections.reverse(test.pathStops);    // then reverse to proper order
+
+                if (!testGroup.contains(test))
+                {
+                    testGroup.add(test);    // this is what needs to be returned
+                }
             }
         }
+
+
+        // ALL CODE BELOW IS FOR TEST DISPLAY ONLY
+        System.out.println("SUCCESS");
+
+        for (int i = 0; i < testGroup.size(); i++)
+        {
+            System.out.println("PATH NO." + (i+1) + "-----------------");
+
+            for (int j = 0; j < testGroup.get(i).pathStops.size(); j++)
+            {
+                System.out.println(testGroup.get(i).pathStops.get(j).getFullName());
+            }
+        }
+
     }
 }
