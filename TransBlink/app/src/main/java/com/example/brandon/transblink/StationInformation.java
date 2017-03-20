@@ -14,7 +14,8 @@ public class StationInformation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent =  getIntent();
-        themeSel =  intent.getIntExtra("theme", 0 );
+        ThemeChange themeChg = new ThemeChange();
+        themeSel = themeChg.findTheme(this);
         setTheme(themeSel);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_information);

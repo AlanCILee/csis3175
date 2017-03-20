@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,13 +16,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
 {
     public static ArrayList<Station> masterList;
-    public int themeSel = R.style.AppTheme;
+    public int themeSel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent =  getIntent();
-        themeSel =  intent.getIntExtra("theme", 0 );
+        ThemeChange themeChg = new ThemeChange();
+        themeSel = themeChg.findTheme(this);
         setTheme(themeSel);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, TripPlanner.class);
         intent.putExtra("caller","MainActivity");
-        intent.putExtra("theme",themeSel);
         intent.putExtra("stations",masterList);
 
         startActivity(intent);
@@ -94,7 +95,6 @@ public class MainActivity extends AppCompatActivity
     public void goToStationMap(View v)
     {
         Intent intent = new Intent(MainActivity.this, StationMap.class);
-        intent.putExtra("theme",themeSel);
 
         startActivity(intent);
     }
@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity
         if(gps.isGetLocation()) {
             Intent intent = new Intent(MainActivity.this, LocationStation.class);
             intent.putExtra("stations", masterList);
-            intent.putExtra("theme",themeSel);
             startActivity(intent);
         }else{
             gps.showSettingsAlert();
@@ -114,7 +113,6 @@ public class MainActivity extends AppCompatActivity
     {
 
         Intent intent = new Intent(MainActivity.this, AboutUs.class);
-        intent.putExtra("theme",themeSel);
 
         startActivity(intent);
 
@@ -123,14 +121,12 @@ public class MainActivity extends AppCompatActivity
     public void goToChangeLog(View v)
     {
         Intent intent = new Intent(MainActivity.this, ChangeLog.class);
-        intent.putExtra("theme",themeSel);
 
         startActivity(intent);
     }
     public void goToThemeChange(View v)
     {
         Intent intent = new Intent(MainActivity.this, ThemeChange.class);
-        intent.putExtra("theme",themeSel);
 
         startActivity(intent);
     }
@@ -138,7 +134,6 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, StationInformation.class);
         intent.putExtra("caller","MainActivity");
-        intent.putExtra("theme",themeSel);
         intent.putExtra("stations",masterList);
 
         startActivity(intent);

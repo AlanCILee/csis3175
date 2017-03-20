@@ -9,8 +9,8 @@ public class AboutUs extends AppCompatActivity {
     private  int themeSel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent =  getIntent();
-        themeSel =  intent.getIntExtra("theme", 0 );
+        ThemeChange themeChg = new ThemeChange();
+        themeSel = themeChg.findTheme(this);
         setTheme(themeSel);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
