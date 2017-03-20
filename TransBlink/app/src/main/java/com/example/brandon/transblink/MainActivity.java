@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         this.initialize();
 
-        //TESTING: UNCOMMENT AT YOUR OWN PERIL
-        DataProcessor.testAlgorithm();
+
     }
 
     //why is do we need to call this single method that only calls a single method?

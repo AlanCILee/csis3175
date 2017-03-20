@@ -72,29 +72,24 @@ public class DataProcessor
     //Note: this will be the production version method
     public static ArrayList<Path> findRoutes(Station start, Station end)
     {
-        ArrayList<Path> routePaths = new ArrayList<Path>(); // list of valid paths
-
-        Path first = new Path(start, end);                  // first path
-        first.traverse(start);
-        Collections.reverse(first.pathStops);               // need to reverse order
-        first.setNumStops(first.pathStops.size() - 1);
-        routePaths.add(first);
+        ArrayList<Path> routePaths = stageOne(start, end); // list of valid paths
 
         /*
             HEY
             what this shit needs to do is scan through each path, and every transfer point generate a new path
-         */
 
-        for (int i = 0; i < first.pathStops.size(); i++)
+            newPath.pathStops.subList(i + 1, newPath.pathStops.size()).clear(); // removes all paths after the transfer point
+        */
+
+        for (int i = 0; i < routePaths.size(); i++) // each path in group
         {
-            if (first.pathStops.get(i).getTransferPoint())
+            for (int j = 0; j < routePaths.get(i).pathStops.size(); j++)
             {
-                Path newPath = new Path(first);
-                newPath.pathStops.subList(i+1,newPath.pathStops.size()).clear(); // removes all paths after the transfer point
-
-                for (int j = 0; j < newPath.pathStops.size(); j++)
+                if (routePaths.get(i).pathStops.get(j).getTransferPoint())
                 {
-
+                    //call break method
+                    stageTwo(routePaths.get(i));
+                    break; // get out of inner loop
                 }
             }
         }
@@ -104,11 +99,11 @@ public class DataProcessor
 
     //STAGE ONE METHOD FOR ROUTE GENERATION
     // In the production version, this method needs to be modified to return an ArrayList of valid paths
-    public static void testAlgorithm()
+    public static ArrayList<Path> stageOne(Station start, Station end)
     {
-        Station start = DataProcessor.findStation(MainActivity.masterList, "KGG");  // Actual Start
-        Station end = DataProcessor.findStation(MainActivity.masterList, "NWM");    // Actual End
-        ArrayList<Path> testGroup = new ArrayList<Path>();
+        //Station start = DataProcessor.findStation(MainActivity.masterList, "KGG");  // Actual Start
+        //Station end = DataProcessor.findStation(MainActivity.masterList, "NWM");    // Actual End
+        ArrayList<Path> pathGroup = new ArrayList<Path>();
 
         //generate a path for each connector in the start station
         for (int i = 0; i < start.connectingStations.size(); i++)
@@ -125,26 +120,23 @@ public class DataProcessor
                 test.pathStops.add(start);              // add the start to the path
                 Collections.reverse(test.pathStops);    // then reverse to proper order
 
-                if (!testGroup.contains(test))
+                if (!pathGroup.contains(test))
                 {
-                    testGroup.add(test);    // this is what needs to be returned
+                    pathGroup.add(test);    // this is what needs to be returned
                 }
             }
         }
 
+        return pathGroup;
+    }
 
-        // ALL CODE BELOW IS FOR TEST DISPLAY ONLY
-        System.out.println("SUCCESS");
+    //STAGE TWO METHOD FOR ROUTE GENERATION
+    //Takes in a valid Path, and returns an arrayList containing any additional paths that can be used
+    public static ArrayList<Path> stageTwo(Path thePath)
+    {
+        ArrayList<Path> additionalPaths = new ArrayList<Path>();
 
-        for (int i = 0; i < testGroup.size(); i++)
-        {
-            System.out.println("PATH NO." + (i+1) + "-----------------");
 
-            for (int j = 0; j < testGroup.get(i).pathStops.size(); j++)
-            {
-                System.out.println(testGroup.get(i).pathStops.get(j).getFullName());
-            }
-        }
-
+        return additionalPaths;
     }
 }
