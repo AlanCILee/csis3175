@@ -2,6 +2,7 @@ package com.example.brandon.transblink;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +30,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         this.initialize();
 
+        //ALGORITHM TESTING: UNCOMMENT AT OWN RISK
+        Station start = DataProcessor.findStation(masterList, "BRD");
+        Station end = DataProcessor.findStation(masterList, "MET");
+        ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
 
+        for (int i = 0; i < paths.size(); i++)
+        {
+            System.out.println("PATH NO." + (i+1) + "--------------------");
+            for (int j = 0; j < paths.get(i).pathStops.size(); j++)
+            {
+                System.out.println(paths.get(i).pathStops.get(j).getFullName());
+            }
+        }
     }
 
     //why is do we need to call this single method that only calls a single method?

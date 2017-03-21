@@ -74,6 +74,12 @@ public class DataProcessor
     {
         ArrayList<Path> routePaths = stageOne(start, end); // list of valid paths
 
+        for (int p = 0; p < routePaths.size(); p++)
+        {
+            System.out.println("FIRST GEN, PATH OF SIZE " + routePaths.get(p).pathStops.size() + " ADDED");
+        }
+
+        ArrayList<Path> additionalPaths = new ArrayList<Path>();
         /*
             HEY
             what this shit needs to do is scan through each path, and every transfer point generate a new path
@@ -83,15 +89,33 @@ public class DataProcessor
 
         for (int i = 0; i < routePaths.size(); i++) // each path in group
         {
-            for (int j = 0; j < routePaths.get(i).pathStops.size(); j++)
+            for (int j = 0; j < routePaths.get(i).pathStops.size(); j++) // each stop in path
             {
                 if (routePaths.get(i).pathStops.get(j).getTransferPoint())
                 {
                     //call break method
-                    stageTwo(routePaths.get(i));
+                    Path newPath = new Path(routePaths.get(i));
+                    //System.out.println(newPath.pathStops.size());
+                    newPath.pathStops.subList(j + 1, newPath.pathStops.size()).clear();
+
+                    String code = newPath.pathStops.get(newPath.pathStops.size() - 1).getCode();
+                    ArrayList<Path> more = stageOne(DataProcessor.findStation(MainActivity.masterList, code), end);
+
+                    //System.out.println(newPath.pathStops.size());
+
+                    for (int k = 0; k < more.size(); k++)
+                    {
+                        additionalPaths.add(more.get(k));
+                    }
+
                     break; // get out of inner loop
                 }
             }
+        }
+
+        for (int z = 0; z < additionalPaths.size(); z++)
+        {
+            routePaths.add(additionalPaths.get(z));
         }
 
         return routePaths;
@@ -132,10 +156,17 @@ public class DataProcessor
 
     //STAGE TWO METHOD FOR ROUTE GENERATION
     //Takes in a valid Path, and returns an arrayList containing any additional paths that can be used
-    public static ArrayList<Path> stageTwo(Path thePath)
+    public static ArrayList<Path> stageTwo(Path thePath, int index)
     {
         ArrayList<Path> additionalPaths = new ArrayList<Path>();
 
+        Path newPath = new Path(thePath);
+        newPath.pathStops.subList(index + 1, newPath.pathStops.size()).clear();
+
+        for (int i = 0; i < newPath.pathStops.get(index).connectingStations.size(); i++)
+        {
+
+        }
 
         return additionalPaths;
     }

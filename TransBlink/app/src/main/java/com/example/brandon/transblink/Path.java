@@ -92,34 +92,34 @@ public class Path implements Serializable
         boolean end = false;
         Station current = stn;
 
-        System.out.println("NOW AT " + current.getFullName() + " ON THE WAY TO " + this.endStn.getFullName());
+        //System.out.println("NOW AT " + current.getFullName() + " ON THE WAY TO " + this.endStn.getFullName());
         this.traversed.add(current.getCode());
 
         if (current.equals(this.endStn)) //stop if end
         {
             end = true;
             this.pathStops.add(current); //adds ending station
-            System.out.println("DESTINATION FOUND AT " + current.getFullName());
+            //System.out.println("DESTINATION FOUND AT " + current.getFullName());
             //return end;
         }
         else
         {
             for (int i = 0; i < current.connectingStations.size(); i++)
             {
-                System.out.println("IN FOR LOOP, ITERATION NO." + i);
+                //System.out.println("IN FOR LOOP, ITERATION NO." + i);
 
                 String code = current.connectingStations.get(i).split("-")[0];
 
                 if (!end && valid(code)) //if not yet at the destination
                 {
                     this.setPreviousStn(current);
-                    System.out.println("TRAVERSE TO " + code);
+                    //System.out.println("TRAVERSE TO " + code);
                     end = traverse(DataProcessor.findStation(MainActivity.masterList, code)); //keep going
                 }
 
                 if (end)
                 {
-                    System.out.println("ADDING " + current.getFullName());
+                    //System.out.println("ADDING " + current.getFullName());
                     //if (!pathStops.contains(current))
                     this.pathStops.add(current);
                     break; //get out of the loop
@@ -142,7 +142,7 @@ public class Path implements Serializable
         return v;
     }
 
-    public void addPath(Path add)
+    public void addPaths(Path add)
     {
         for (int i = 0; i < add.pathStops.size(); i++)
         {
