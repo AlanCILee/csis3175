@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity
         this.initialize();
 
         //ALGORITHM TESTING: UNCOMMENT AT OWN RISK
-        Station start = DataProcessor.findStation(masterList, "BRD");
-        Station end = DataProcessor.findStation(masterList, "MET");
+        Station start = DataProcessor.findStation(masterList, "KGG");
+        Station end = DataProcessor.findStation(masterList, "YVR");
         ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
 
         for (int i = 0; i < paths.size(); i++)
         {
-            System.out.println("PATH NO." + (i+1) + "--------------------");
+            System.out.println("PATH NO." + (i+1) + " --------------------");
             for (int j = 0; j < paths.get(i).pathStops.size(); j++)
             {
                 System.out.println(paths.get(i).pathStops.get(j).getFullName());

@@ -63,7 +63,7 @@ public class DataProcessor
         else if (trainCode.equals("RICHBR"))
             return "Richmond-Brighouse";
         else if (trainCode.equals("YVRA"))
-            return "YVR-AIrport";
+            return "YVR-Airport";
         else
             return "Waterfront";
     }
@@ -105,7 +105,12 @@ public class DataProcessor
 
                     for (int k = 0; k < more.size(); k++)
                     {
-                        additionalPaths.add(more.get(k));
+                        more.get(k).insertPaths(newPath);
+
+                        if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()) && !dupePath(routePaths, more.get(k)))
+                        {
+                            additionalPaths.add(more.get(k));
+                        }
                     }
 
                     break; // get out of inner loop
@@ -154,20 +159,25 @@ public class DataProcessor
         return pathGroup;
     }
 
-    //STAGE TWO METHOD FOR ROUTE GENERATION
-    //Takes in a valid Path, and returns an arrayList containing any additional paths that can be used
-    public static ArrayList<Path> stageTwo(Path thePath, int index)
+    //checks for duplicate paths
+    private static boolean dupePath(ArrayList<Path> checkList, Path checking)
     {
-        ArrayList<Path> additionalPaths = new ArrayList<Path>();
+        boolean dupe = true;
 
-        Path newPath = new Path(thePath);
-        newPath.pathStops.subList(index + 1, newPath.pathStops.size()).clear();
-
-        for (int i = 0; i < newPath.pathStops.get(index).connectingStations.size(); i++)
+        for (int i = 0; i < checkList.size(); i++)
         {
-
+            if (checkList.get(i).pathStops.size() != checking.pathStops.size())
+            {
+                for (int j = 0; j < checkList.get(i).pathStops.size(); j++)
+                {
+                    if (!checkList.get(i).pathStops.get(j).getCode().equals(checking.pathStops.get(j).getCode()))
+                    {
+                        return false;
+                    }
+                }
+            }
         }
 
-        return additionalPaths;
+        return dupe;
     }
 }

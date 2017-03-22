@@ -43,8 +43,8 @@ public class Path implements Serializable
         this.numStops = 0;
         this.zoneChanges = 0;
         this.numTransfers = 0;
-        this.pathStops = old.pathStops;
-        this.traversed = old.traversed;
+        this.pathStops = new ArrayList<>(old.pathStops);
+        this.traversed = new ArrayList<>(old.traversed);
     }
 
     public int getNumStops()
@@ -142,13 +142,13 @@ public class Path implements Serializable
         return v;
     }
 
-    public void addPaths(Path add)
+    public void insertPaths(Path add)
     {
-        for (int i = 0; i < add.pathStops.size(); i++)
+        for (int i = add.pathStops.size() - 1; i >= 0; i--)
         {
             if (!this.pathStops.contains(add.pathStops.get(i)))
             {
-                this.pathStops.add(add.pathStops.get(i));
+                this.pathStops.add(0, add.pathStops.get(i));
                 this.numStops = this.pathStops.size();
             }
         }
