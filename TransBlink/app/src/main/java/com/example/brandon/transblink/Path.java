@@ -52,9 +52,9 @@ public class Path implements Serializable
         return this.numStops;
     }
 
-    public void setNumStops(int a)
+    public void setNumStops()
     {
-        this.numStops = a;
+        this.numStops = this.pathStops.size() - 1;
     }
 
     public int getNumTransfers()
@@ -74,7 +74,7 @@ public class Path implements Serializable
 
     public void setZoneChanges(int a)
     {
-        this . zoneChanges = a;
+        this.zoneChanges = a;
     }
 
     public Station getPreviousStn()

@@ -31,9 +31,10 @@ public class MainActivity extends AppCompatActivity
         this.initialize();
 
         //ALGORITHM TESTING: UNCOMMENT AT OWN RISK
-        Station start = DataProcessor.findStation(masterList, "KGG");
-        Station end = DataProcessor.findStation(masterList, "YVR");
+        Station start = DataProcessor.findStation(masterList, "WTF");
+        Station end = DataProcessor.findStation(masterList, "BRD");
         ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
+        System.out.println(DataProcessor.findStation(masterList, "CMB").getTransferPoint());
 
         for (int i = 0; i < paths.size(); i++)
         {

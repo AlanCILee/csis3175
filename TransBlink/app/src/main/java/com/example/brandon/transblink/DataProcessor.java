@@ -73,11 +73,7 @@ public class DataProcessor
     public static ArrayList<Path> findRoutes(Station start, Station end)
     {
         ArrayList<Path> routePaths = stageOne(start, end); // list of valid paths
-
-        for (int p = 0; p < routePaths.size(); p++)
-        {
-            System.out.println("FIRST GEN, PATH OF SIZE " + routePaths.get(p).pathStops.size() + " ADDED");
-        }
+        System.out.println("PATH FROM " + start.getFullName() + " TO " + end.getFullName());
 
         ArrayList<Path> additionalPaths = new ArrayList<Path>();
         /*
@@ -93,6 +89,8 @@ public class DataProcessor
             {
                 if (routePaths.get(i).pathStops.get(j).getTransferPoint())
                 {
+                    System.out.println("TPOINT AT " + routePaths.get(i).pathStops.get(j).getCode());
+
                     //call break method
                     Path newPath = new Path(routePaths.get(i));
                     //System.out.println(newPath.pathStops.size());
@@ -107,7 +105,7 @@ public class DataProcessor
                     {
                         more.get(k).insertPaths(newPath);
 
-                        if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()) && !dupePath(routePaths, more.get(k)))
+                        if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()) && !dupePath(routePaths, more.get(k))) //
                         {
                             additionalPaths.add(more.get(k));
                         }
@@ -179,5 +177,12 @@ public class DataProcessor
         }
 
         return dupe;
+    }
+
+    //sets the data for each path; call this shit in a loop
+    private static void setData(Path thePath)
+    {
+        thePath.setNumStops();
+
     }
 }
