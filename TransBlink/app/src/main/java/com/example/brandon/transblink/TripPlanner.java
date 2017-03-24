@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,9 +44,12 @@ public class TripPlanner extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, stationDisp);
 
+        ListView start = (ListView)findViewById(R.id.ListViewStarting);
+        ListView stop = (ListView)findViewById(R.id.ListViewEnding);
 
-        AutoCompleteTextView start = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewStartingStation);
-        AutoCompleteTextView stop = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewEndStation);
+        //old code delete after:
+        //AutoCompleteTextView start = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewStartingStation);
+        //AutoCompleteTextView stop = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewEndStation);
 
         start.setAdapter(adapter);
         stop.setAdapter(adapter);
@@ -57,7 +61,9 @@ public class TripPlanner extends AppCompatActivity {
             case "LocationStation":
                 startStation = (Station)intent.getSerializableExtra("startStation");
                 Log.d("startStation",startStation.getFullName());
-                start.setText(startStation.getFullName());
+                //start.setText(startStation.getFullName());
+                //not sure how to fix this with the list view instead of autocomplete. I think it just needs to select the clicked on station some other way.
+                //Because its a list now we want the item to be automatically selected in the list
 
 
                 break;

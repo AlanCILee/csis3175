@@ -19,7 +19,9 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttonGoToStationChoosing"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:text="@string/btnMap"
@@ -30,7 +32,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:id="@+id/buttonGoToStationMap"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:text="@string/btnNearest"
@@ -41,7 +45,9 @@
         android:layout_marginBottom="5dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttonGoToNearestStation"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:text="@string/btnAbout"
@@ -52,7 +58,9 @@
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttonGoToAboutUs"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:text="@string/btnChange"
@@ -63,7 +71,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:id="@+id/buttonGoToChangelog"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:text="@string/btnThemes"
@@ -74,7 +84,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:id="@+id/buttonGoToTheme"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:text="@string/btnStnInfo"
@@ -82,10 +94,13 @@
         android:layout_width="222dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonGoToTheme"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttonGoToStationInfo"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
     <ImageView
         android:layout_width="150dp"

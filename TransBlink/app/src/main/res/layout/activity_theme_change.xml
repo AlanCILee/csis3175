@@ -24,46 +24,47 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:id="@+id/radioButtonDefaultTheme"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimaryDark" />
 
         <RadioButton
             android:text="Dark Theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioButtonDarkTheme"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimaryDark" />
 
         <RadioButton
             android:text="Light Theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioButtonLightTheme"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimaryDark" />
+
+        <RadioButton
+            android:text="Crazy Theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButtonCrazyTheme"
+            android:layout_weight="1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimaryDark" />
     </RadioGroup>
 
     <Button
         android:text="@string/btnChangeTheme"
-        android:layout_width="wrap_content"
+        android:layout_width="222dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radioGroupThemes"
         android:layout_centerHorizontal="true"
-        android:id="@+id/buttonChangeTheme" />
-
-    <Switch
-        android:text="Dark Theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonChangeTheme"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="49dp"
-        android:id="@+id/switchTemporary" />
-
-    <TextView
-        android:text="We could also use switches like here but idk how well they will work with each other Maybe we can have it so when one is flipped any others on get turned off."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textViewTemporary3" />
+        android:id="@+id/buttonChangeTheme"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent" />
 
 </RelativeLayout>

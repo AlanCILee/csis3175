@@ -22,4 +22,13 @@
         <item name="colorAccent">@color/lightAccent</item>
     </style>
 
+    <style name="themeCrazy" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/crazyPrimary</item>
+        <item name="colorPrimaryDark">@color/crazySecondary</item>
+        <item name="colorAccent">@color/crazyAccent</item>
+    </style>
+
+
+
 </resources>

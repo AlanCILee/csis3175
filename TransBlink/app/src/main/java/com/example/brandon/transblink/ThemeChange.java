@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +54,7 @@ public class ThemeChange extends AppCompatActivity {
         RadioButton def = (RadioButton) findViewById(R.id.radioButtonDefaultTheme);
         RadioButton dark= (RadioButton) findViewById(R.id.radioButtonDarkTheme);
         RadioButton light = (RadioButton) findViewById(R.id.radioButtonLightTheme);
+        RadioButton crazy = (RadioButton) findViewById(R.id.radioButtonCrazyTheme);
 
         String hold = "";
 
@@ -70,6 +72,10 @@ public class ThemeChange extends AppCompatActivity {
         if(light.isChecked())
         {
             hold = "3";
+        }
+        if(crazy.isChecked())
+        {
+            hold = "4";
         }
 
         try
@@ -118,6 +124,9 @@ public class ThemeChange extends AppCompatActivity {
                 break;
             case"3":
                 themeSel = R.style.themeLight;
+                break;
+            case"4":
+                themeSel = R.style.themeCrazy;
                 break;
             default:
                 themeSel = R.style.AppTheme;
