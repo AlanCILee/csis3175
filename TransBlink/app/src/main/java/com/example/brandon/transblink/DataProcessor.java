@@ -73,6 +73,7 @@ public class DataProcessor
     public static ArrayList<Path> findRoutes(Station start, Station end)
     {
         ArrayList<Path> routePaths = stageOne(start, end); // list of valid paths
+        System.out.println("FIRST GENERATION, " + routePaths.size() + " PATHS CREATED");
         System.out.println("PATH FROM " + start.getFullName() + " TO " + end.getFullName());
 
         ArrayList<Path> additionalPaths = new ArrayList<Path>();
@@ -89,32 +90,47 @@ public class DataProcessor
             {
                 if (routePaths.get(i).pathStops.get(j).getTransferPoint())
                 {
-                    System.out.println("TPOINT AT " + routePaths.get(i).pathStops.get(j).getCode());
+                    //System.out.println("TPOINT AT " + routePaths.get(i).pathStops.get(j).getCode());
 
                     //call break method
-                    Path newPath = new Path(routePaths.get(i));
+                    Path newPath = new Path(routePaths.get(i)); //second half
                     //System.out.println(newPath.pathStops.size());
                     newPath.pathStops.subList(j + 1, newPath.pathStops.size()).clear();
 
                     String code = newPath.pathStops.get(newPath.pathStops.size() - 1).getCode();
-                    ArrayList<Path> more = stageOne(DataProcessor.findStation(MainActivity.masterList, code), end);
+                    ArrayList<Path> more = stageOne(DataProcessor.findStation(MainActivity.masterList, code), end); //first half
 
                     //System.out.println(newPath.pathStops.size());
 
                     for (int k = 0; k < more.size(); k++)
                     {
-                        more.get(k).insertPaths(newPath);
+                        more.get(k).insertPaths(newPath); //adding two
 
-                        if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()) && !dupePath(routePaths, more.get(k))) //
+                        if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()))
                         {
-                            additionalPaths.add(more.get(k));
+                            if (!dupePath(routePaths, more.get(k)))
+                            {
+                                if (additionalPaths.size() == 0)
+                                {
+                                    additionalPaths.add(more.get(k));
+                                }
+                                else
+                                {
+                                    if (!dupePath(additionalPaths, more.get(k)))
+                                    {
+                                        additionalPaths.add(more.get(k));
+                                    }
+                                }
+                            }
                         }
                     }
 
-                    break; // get out of inner loop
+                    //break; // get out of inner loop
                 }
             }
         }
+
+        System.out.println("SECOND GENERATION, " + additionalPaths.size() + " PATHS CREATED");
 
         for (int z = 0; z < additionalPaths.size(); z++)
         {
@@ -147,7 +163,7 @@ public class DataProcessor
                 test.pathStops.add(start);              // add the start to the path
                 Collections.reverse(test.pathStops);    // then reverse to proper order
 
-                if (!pathGroup.contains(test))
+                if (!pathGroup.contains(test) && !dupePath(pathGroup, test))
                 {
                     pathGroup.add(test);    // this is what needs to be returned
                 }
@@ -157,23 +173,34 @@ public class DataProcessor
         return pathGroup;
     }
 
-    //checks for duplicate paths
-    private static boolean dupePath(ArrayList<Path> checkList, Path checking)
+    //checks two paths to see if their stops are the same
+    //returns true if there is a duplicate
+    private static boolean dupePath(ArrayList<Path> checklist, Path checkPath)
     {
-        boolean dupe = true;
+        boolean dupe = false;
 
-        for (int i = 0; i < checkList.size(); i++)
+        for (int i = 0; i < checklist.size(); i++) // each path in the list
         {
-            if (checkList.get(i).pathStops.size() != checking.pathStops.size())
+            Path temp = checklist.get(i);
+
+            if (temp.pathStops.size() == checkPath.pathStops.size())
             {
-                for (int j = 0; j < checkList.get(i).pathStops.size(); j++)
+                for (int j = 0; j < temp.pathStops.size(); j++) // each station in the path
                 {
-                    if (!checkList.get(i).pathStops.get(j).getCode().equals(checking.pathStops.get(j).getCode()))
+                    if (temp.pathStops.get(j).getCode().compareToIgnoreCase(checkPath.pathStops.get(j).getCode()) != 0)
                     {
-                        return false;
+                        dupe = false;
+                    }
+                    else
+                    {
+                        dupe = true;
+                        break;
                     }
                 }
             }
+
+            if (dupe)
+                break;
         }
 
         return dupe;
