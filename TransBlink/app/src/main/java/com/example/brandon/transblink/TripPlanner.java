@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
@@ -76,5 +77,21 @@ public class TripPlanner extends AppCompatActivity {
 
         int i =0;
 
+    }
+
+    public void findRoute(View v){
+        Station start = DataProcessor.findStation(stations, "WTF");
+        Station end = DataProcessor.findStation(stations, "BRD");
+        ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
+        System.out.println(DataProcessor.findStation(stations, "CMB").getTransferPoint());
+
+        for (int i = 0; i < paths.size(); i++)
+        {
+            System.out.println("PATH NO." + (i+1) + " --------------------");
+            for (int j = 0; j < paths.get(i).pathStops.size(); j++)
+            {
+                System.out.println(paths.get(i).pathStops.get(j).getFullName());
+            }
+        }
     }
 }
