@@ -11,6 +11,8 @@ import java.util.Collections;
 public class DataProcessor
 {
     //finds and returns a Station object matching the argument name
+    // IMPORTANT: This method is only to be used internally in the program as it relies on the assumtion
+    // that a valid search result exists. DO NOT USE FOR USER SEARCHING
     public static Station findStation(ArrayList<Station> searchArr,String searchStn)
     {
         Station result = null;
@@ -22,7 +24,7 @@ public class DataProcessor
                 if (searchStn.compareTo(searchArr.get(i).getFullName()) == 0)
                 {
                     result = searchArr.get(i);
-                    break;
+                    return result;
                 }
             }
             else
@@ -30,7 +32,7 @@ public class DataProcessor
                 if (searchStn.compareTo(searchArr.get(i).getCode()) == 0)
                 {
                     result = searchArr.get(i);
-                    break;
+                    return result;
                 }
             }
         }
@@ -108,7 +110,7 @@ public class DataProcessor
 
                         if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()))
                         {
-                            if (!dupePath(routePaths, more.get(k)))
+                            if (!dupePath(routePaths, more.get(k)) && integrityCheck(more.get(k)))
                             {
                                 if (additionalPaths.size() == 0)
                                 {
@@ -204,6 +206,41 @@ public class DataProcessor
         }
 
         return dupe;
+    }
+
+    // Integrity Check confirms that the Stations in the path are infact connected to each other
+    // returns false if a teleport is detected
+    private static boolean integrityCheck(Path checkPath)
+    {
+        boolean valid = true;
+        int last = checkPath.pathStops.size() - 1;
+
+        //System.out.println("IN INTEGERITY CHECK");
+
+        //if (!checkPath.pathStops.get(0).getCode().equals(checkPath.getStartCode()) || !checkPath.pathStops.get(last).getCode().equals(checkPath.getEndCode()))
+            //return false;
+
+        for (int i = 0; i < last; i++)
+        {
+            String next = checkPath.pathStops.get(i+1).getCode();
+            boolean control = false;
+
+            for (int j = 0; j < checkPath.pathStops.get(i).connectingStations.size(); j++)
+            {
+                //System.out.println("COMPARING " + checkPath.pathStops.get(i).connectingStations.get(j).split("-")[0] + " WITH " + next);
+
+                if (checkPath.pathStops.get(i).connectingStations.get(j).split("-")[0].equals(next))
+                {
+                    control = true;
+                    break;
+                }
+            }
+
+            if (!control)
+                return false;
+        }
+
+        return valid;
     }
 
     //sets the data for each path; call this shit in a loop

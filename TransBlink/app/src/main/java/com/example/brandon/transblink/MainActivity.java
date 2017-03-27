@@ -31,10 +31,12 @@ public class MainActivity extends AppCompatActivity
         this.initialize();
 
         //ALGORITHM TESTING: UNCOMMENT AT OWN RISK
+        //RUN THIS SHIT IN DEBUG IF YOU WANT TO SEE ANYTHING
+        ///*
         Station start = DataProcessor.findStation(masterList, "WTF");
         Station end = DataProcessor.findStation(masterList, "BRD");
         ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
-        System.out.println(DataProcessor.findStation(masterList, "CMB").getTransferPoint());
+        //System.out.println(DataProcessor.findStation(masterList, "CMB").getTransferPoint());
 
         for (int i = 0; i < paths.size(); i++)
         {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity
                 System.out.println(paths.get(i).pathStops.get(j).getFullName());
             }
         }
+        //*/
     }
 
     //why is do we need to call this single method that only calls a single method?

@@ -47,6 +47,10 @@ public class Path implements Serializable
         this.traversed = new ArrayList<>(old.traversed);
     }
 
+    public String getStartCode() { return this.startStn.getCode(); }
+
+    public String getEndCode() { return this.endStn.getCode(); }
+
     public int getNumStops()
     {
         return this.numStops;
