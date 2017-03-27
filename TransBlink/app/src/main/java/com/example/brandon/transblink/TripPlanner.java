@@ -79,11 +79,13 @@ public class TripPlanner extends AppCompatActivity {
 
     }
 
-    public void findRoute(View v){
-        Station start = DataProcessor.findStation(stations, "WTF");
-        Station end = DataProcessor.findStation(stations, "BRD");
+    public void findRoute(View v)
+    {
+        // You need to call the static masterlist in the MainActivity because of ????
+        Station start = DataProcessor.findStation(MainActivity.masterList, "WTF");
+        Station end = DataProcessor.findStation(MainActivity.masterList, "BRD");
         ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
-        System.out.println(DataProcessor.findStation(stations, "CMB").getTransferPoint());
+        //System.out.println(DataProcessor.findStation(stations, "CMB").getTransferPoint());
 
         for (int i = 0; i < paths.size(); i++)
         {
