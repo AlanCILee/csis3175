@@ -105,7 +105,7 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/transblinkfinallogo"
+        app:srcCompat="@drawable/transblinktransparent"
         android:id="@+id/imageViewTransBlinkLogo"
         android:layout_above="@+id/buttonGoToNearestStation"
         android:layout_centerHorizontal="true" />
