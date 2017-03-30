@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
     <color name="colorPrimary">#4180d8</color>
     <color name="colorPrimaryDark">#0b2144</color>
     <color name="colorAccent">#ff882c</color>
@@ -16,5 +18,5 @@
     <color name="crazySecondary">#e900ff</color>
     <color name="crazyAccent">#10f700</color>
 
-    <color name="colorBackgroundCustom">#10f700</color>
+
 </resources>

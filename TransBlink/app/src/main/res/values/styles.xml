@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorBackgroundCustom">@color/colorBackgroundCustom</item>
+
 
     </style>
 
@@ -15,7 +15,7 @@
         <item name="colorPrimary">@color/darkPrimary</item>
         <item name="colorPrimaryDark">@color/darkSecondary</item>
         <item name="colorAccent">@color/darkAccent</item>
-        <item name="colorBackgroundCustom">@color/colorBackgroundCustom</item>
+
     </style>
 
     <style name="themeLight" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -23,7 +23,7 @@
         <item name="colorPrimary">@color/lightPrimary</item>
         <item name="colorPrimaryDark">@color/lightSecondary</item>
         <item name="colorAccent">@color/lightAccent</item>
-        <item name="colorBackgroundCustom">@color/colorBackgroundCustom</item>
+
     </style>
 
     <style name="themeCrazy" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -31,7 +31,7 @@
         <item name="colorPrimary">@color/crazyPrimary</item>
         <item name="colorPrimaryDark">@color/crazySecondary</item>
         <item name="colorAccent">@color/crazyAccent</item>
-    <item name="colorBackgroundCustom">@color/colorBackgroundCustom</item>
+
     </style>
 
 
