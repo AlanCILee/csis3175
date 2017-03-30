@@ -125,33 +125,13 @@ public class MainActivity extends AppCompatActivity
             gps.showSettingsAlert();
         }
     }
-    public void goToAboutUs(View v)
-    {
-
-        Intent intent = new Intent(MainActivity.this, AboutUs.class);
-
-        startActivity(intent);
 
 
-    }
-    public void goToChangeLog(View v)
-    {
-        Intent intent = new Intent(MainActivity.this, ChangeLog.class);
-
-        startActivity(intent);
-    }
     public void goToThemeChange(View v)
     {
         Intent intent = new Intent(MainActivity.this, ThemeChange.class);
 
         startActivity(intent);
     }
-    public void goToStationInfo(View v)
-    {
-        Intent intent = new Intent(MainActivity.this, StationInformation.class);
-        intent.putExtra("caller","MainActivity");
-        intent.putExtra("stations",masterList);
 
-        startActivity(intent);
-    }
 }

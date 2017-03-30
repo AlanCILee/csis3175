@@ -9,105 +9,73 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.brandon.transblink.MainActivity">
-
-    <Button
-        android:text="@string/btnTrip"
-        android:onClick="goToTripPlanner"
-        android:layout_width="222dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/buttonGoToStationChoosing"
-        android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+    tools:context="com.example.brandon.transblink.MainActivity"
+    style="@style/Theme.AppCompat.Light.DarkActionBar">
 
     <Button
         android:text="@string/btnMap"
         android:onClick="goToStationMap"
-        android:layout_width="222dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonGoToStationChoosing"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="30dp"
         android:id="@+id/buttonGoToStationMap"
         android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+
+        android:background="?android:attr/colorPrimaryDark"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="20sp" />
 
     <Button
         android:text="@string/btnNearest"
         android:onClick="goToNearestStation"
-        android:layout_width="222dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonGoToStationMap"
-        android:layout_marginBottom="5dp"
-        android:layout_centerHorizontal="true"
         android:id="@+id/buttonGoToNearestStation"
         android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+        android:background="?android:attr/colorPrimaryDark"
+        android:textColor="?android:attr/colorAccent"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/buttonGoToStationMap"
 
-    <Button
-        android:text="@string/btnAbout"
-        android:onClick="goToAboutUs"
-        android:layout_width="222dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGoToStationChoosing"
-        android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/buttonGoToAboutUs"
-        android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+        android:layout_alignStart="@+id/buttonGoToStationMap"
+        android:textSize="20sp" />
 
-    <Button
-        android:text="@string/btnChange"
-        android:onClick="goToChangeLog"
-        android:layout_width="222dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGoToAboutUs"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:id="@+id/buttonGoToChangelog"
-        android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/transblinktransparent"
+        android:id="@+id/imageViewTransBlinkLogo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="@string/btnThemes"
         android:onClick="goToThemeChange"
-        android:layout_width="222dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGoToChangelog"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
         android:id="@+id/buttonGoToTheme"
         android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+        android:background="?android:attr/colorPrimaryDark"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/buttonGoToStationChoosing" />
 
     <Button
-        android:text="@string/btnStnInfo"
-        android:onClick="goToStationInfo"
-        android:layout_width="222dp"
+        android:text="@string/btnTrip"
+        android:onClick="goToTripPlanner"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGoToTheme"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/buttonGoToStationInfo"
+        android:id="@+id/buttonGoToStationChoosing"
         android:textStyle="normal|bold"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/transblinktransparent"
-        android:id="@+id/imageViewTransBlinkLogo"
-        android:layout_above="@+id/buttonGoToNearestStation"
-        android:layout_centerHorizontal="true" />
+        android:background="?android:attr/colorPrimaryDark"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="20sp"
+        android:layout_above="@+id/buttonGoToTheme"
+        android:layout_alignStart="@+id/buttonGoToStationMap"
+        android:layout_marginBottom="30dp" />
 
 </RelativeLayout>

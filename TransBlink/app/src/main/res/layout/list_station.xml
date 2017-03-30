@@ -16,8 +16,7 @@
                 android:id="@+id/tvStationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="?android:attr/colorPrimary" />
 
             <TextView
                 android:text="Station Description"
@@ -25,8 +24,7 @@
                 android:id="@+id/tvStationDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="?android:attr/colorPrimary" />
 
     </LinearLayout>
 
@@ -53,12 +51,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="10dp" />
 
-            <Button
-                android:id="@+id/line1"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
-                android:layout_width="10dp"
-                />
+        <Button
+            android:id="@+id/line1"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_width="10dp"
+            />
     </LinearLayout>
 
 </LinearLayout>
