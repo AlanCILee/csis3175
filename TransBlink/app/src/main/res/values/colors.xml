@@ -6,16 +6,16 @@
     <color name="colorPrimaryDark">#0b2144</color>
     <color name="colorAccent">#ff882c</color>
 
-    <color name="darkPrimary">#364356</color>
-    <color name="darkSecondary">#1f1244</color>
+    <color name="darkPrimary">#545c66</color>
+    <color name="darkSecondary">#11072b</color>
     <color name="darkAccent">#dadfe8</color>
 
     <color name="lightPrimary">#0d5560</color>
     <color name="lightSecondary">#edf2fc</color>
     <color name="lightAccent">#ff9438</color>
 
-    <color name="crazyPrimary">#fff600</color>
-    <color name="crazySecondary">#e900ff</color>
+    <color name="crazyPrimary">#e900ff</color>
+    <color name="crazySecondary">#fff600</color>
     <color name="crazyAccent">#10f700</color>
 
 

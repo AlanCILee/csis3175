@@ -25,8 +25,11 @@
             android:checked="true"
             android:id="@+id/radioButtonDefaultTheme"
             android:layout_weight="1"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimaryDark" />
+            android:textColor="?android:attr/colorPrimary"
+            android:textColorHighlight="?android:attr/colorPrimaryDark"
+            android:textColorLink="?android:attr/colorAccent"
+            android:fontFamily="sans-serif"
+            android:textSize="14sp" />
 
         <RadioButton
             android:text="Dark Theme"
@@ -34,8 +37,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/radioButtonDarkTheme"
             android:layout_weight="1"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimaryDark" />
+            android:textColor="@color/darkPrimary"
+            android:textColorHighlight="@color/darkSecondary"
+            android:textColorLink="@color/darkAccent" />
 
         <RadioButton
             android:text="Light Theme"
@@ -44,8 +48,9 @@
             android:id="@+id/radioButtonLightTheme"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimaryDark" />
+            android:textColor="@color/lightPrimary"
+            android:textColorHighlight="@color/lightSecondary"
+            android:textColorLink="@color/lightAccent" />
 
         <RadioButton
             android:text="Crazy Theme"
@@ -53,8 +58,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/radioButtonCrazyTheme"
             android:layout_weight="1"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimaryDark" />
+            android:textColor="@color/crazyPrimary"
+            android:textColorHighlight="@color/crazySecondary"
+            android:textColorLink="@color/crazyAccent" />
     </RadioGroup>
 
     <Button
@@ -64,7 +70,7 @@
         android:layout_below="@+id/radioGroupThemes"
         android:layout_centerHorizontal="true"
         android:id="@+id/buttonChangeTheme"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorAccent" />
+        android:background="?android:attr/colorPrimaryDark"
+        android:textColor="?android:attr/colorAccent" />
 
 </RelativeLayout>

@@ -16,6 +16,7 @@
         <item name="colorPrimaryDark">@color/darkSecondary</item>
         <item name="colorAccent">@color/darkAccent</item>
 
+
     </style>
 
     <style name="themeLight" parent="Theme.AppCompat.Light.DarkActionBar">
