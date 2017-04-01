@@ -109,12 +109,13 @@ public class ListStationAdapater extends ArrayAdapter{
 
 
         if(numOfTransfers !=0){
-            transferInfo += numOfTransfers+ " time Transer \n";
+            transferInfo += numOfTransfers+ " time Transer";
             for (int i=0; i<path.transferStations.size(); i++){
-                transferInfo += (i+1)+ ": "+path.transferStations.get(i).getFullName()+"\n";
+                transferInfo += "\n";
+                transferInfo += (i+1)+ ": "+path.transferStations.get(i).getFullName();
             }
         }else{
-            transferInfo += "No Transer \n";
+            transferInfo += "No Transer";
         }
 
         txtDesc.setText(transferInfo);

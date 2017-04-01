@@ -85,13 +85,14 @@ public class TripPlanner extends AppCompatActivity {
         }
 
         ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
+
         pathOptions = new Path[paths.size()];
         paths.toArray(pathOptions);
 
-        if(adapater == null){
-            adapater = new ListStationAdapater(this, pathOptions, ListStationAdapater.DISP.ROUTE_OPTIONS);
-            listViewPossibleRoutes.setAdapter(adapater);
-        }
+        adapater = new ListStationAdapater(this, pathOptions, ListStationAdapater.DISP.ROUTE_OPTIONS);
+        listViewPossibleRoutes.setAdapter(adapater);
+
+        adapater.notifyDataSetChanged();
 
         listViewPossibleRoutes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
