@@ -18,6 +18,7 @@ public class Path implements Serializable
     private int zoneChanges;
     public ArrayList<Station> pathStops; //should this be public?
     public ArrayList<String> traversed;
+    public ArrayList<Station> transferStations;
 
     public Path(Station a, Station b)
     {
@@ -45,6 +46,47 @@ public class Path implements Serializable
         this.numTransfers = 0;
         this.pathStops = new ArrayList<>(old.pathStops);
         this.traversed = new ArrayList<>(old.traversed);
+    }
+
+    public void setTransferInfo(){
+        this.transferStations = new ArrayList<Station>();
+        this.numTransfers = 0;
+
+        Station prevStation = null;
+        Station.Lines currentLine = null;
+        Station.Lines[] currentStationLines;
+
+        if(pathStops == null || pathStops.size() ==0)
+            return;
+
+        for(int i=0; i<pathStops.size(); i++){
+            Station currentStation = pathStops.get(i);
+            currentStationLines = currentStation.getLines();
+
+            if(i==0){
+                prevStation = currentStation;
+                if(currentStationLines.length == 1)
+                    currentLine = currentStationLines[0];
+
+            }else {
+                if (currentLine == null && currentStationLines.length == 1) {
+                    currentLine = currentStationLines[0];
+                } else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0]) {
+                    transferStations.add(prevStation);
+                    numTransfers++;
+                    currentLine = currentStationLines[0];
+
+//                Need check one more case
+//                } else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0]) {
+//                    transferStations.add(prevStation);
+//                    numTransfers++;
+//                    currentLine = currentStationLines[0];
+//                }
+            }
+
+                prevStation = currentStation;
+            }
+        }
     }
 
     public String getStartCode() { return this.startStn.getCode(); }

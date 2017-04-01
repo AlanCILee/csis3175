@@ -19,15 +19,28 @@ import java.util.ArrayList;
  */
 
 public class ListStationAdapater extends ArrayAdapter{
-    public static enum DISP { NEARSTATION };        // Display Mode for other List
+    public static enum DISP { NEARSTATION, ROUTE_OPTIONS };        // Display Mode for other List
 
     private Activity context;
     private Station[] stations;
+    private Path[] paths;
+
     private DISP displayMode;
+
+
+    TextView txtTitle;
+    TextView txtDesc;
 
     public ListStationAdapater(Activity context, Station[] stations, DISP mode ) {
         super(context, R.layout.list_station, stations);
         this.stations = stations;
+        this.context = context;
+        this.displayMode = mode;
+    }
+
+    public ListStationAdapater(Activity context, Path[] paths, DISP mode ) {
+        super(context, R.layout.list_station, paths);
+        this.paths = paths;
         this.context = context;
         this.displayMode = mode;
     }
@@ -39,9 +52,23 @@ public class ListStationAdapater extends ArrayAdapter{
             convertView = inflater.inflate(R.layout.list_station, parent, false);
         }
 
-        TextView txtTitle = (TextView)convertView.findViewById(R.id.tvStationTitle);
-        TextView txtDesc = (TextView)convertView.findViewById(R.id.tvStationDesc);
+        txtTitle = (TextView)convertView.findViewById(R.id.tvStationTitle);
+        txtDesc = (TextView)convertView.findViewById(R.id.tvStationDesc);
 
+        switch (displayMode){
+            case NEARSTATION:
+                showNearStations(position, convertView);
+                break;
+
+            case ROUTE_OPTIONS:
+                showRouteOptions(position, convertView);
+                break;
+
+        }
+        return convertView;
+    }
+
+    public void showNearStations(int position, View convertView){
         Button[] lineColors = new Button[2];
         lineColors[0] = (Button)convertView.findViewById(R.id.line1);
         lineColors[0].setBackgroundColor(0);
@@ -49,9 +76,7 @@ public class ListStationAdapater extends ArrayAdapter{
         lineColors[1].setBackgroundColor(0);
 
         txtTitle.setText(stations[position].getFullName());
-
-        if(displayMode == DISP.NEARSTATION)
-            txtDesc.setText(String.valueOf((int)(stations[position].getDistance()) + "m"));
+        txtDesc.setText(String.valueOf((int)(stations[position].getDistance()) + "m"));
 
         Station.Lines[] lines = stations[position].getLines();
         for(int i=0; i<lines.length; i++){
@@ -69,8 +94,29 @@ public class ListStationAdapater extends ArrayAdapter{
                     color = Color.parseColor("#41e2f4");
                     break;
             }
-           lineColors[i].setBackgroundColor(color);
+            lineColors[i].setBackgroundColor(color);
         }
-        return convertView;
+    }
+
+    public void showRouteOptions(int position, View convertView){
+        Path path = paths[position];
+        path.setTransferInfo();
+
+        int numOfStations = path.pathStops.size();
+        int numOfTransfers = path.getNumTransfers();
+        String transferInfo = "";
+        txtTitle.setText("Path Option "+ (position+1) +": "+numOfStations+" Stops");
+
+
+        if(numOfTransfers !=0){
+            transferInfo += numOfTransfers+ " time Transer \n";
+            for (int i=0; i<path.transferStations.size(); i++){
+                transferInfo += (i+1)+ ": "+path.transferStations.get(i).getFullName()+"\n";
+            }
+        }else{
+            transferInfo += "No Transer \n";
+        }
+
+        txtDesc.setText(transferInfo);
     }
 }

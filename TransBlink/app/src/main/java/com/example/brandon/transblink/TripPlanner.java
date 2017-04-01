@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
@@ -15,12 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TripPlanner extends AppCompatActivity {
-    Station startStation;
-    Station station;
+    AutoCompleteTextView autoCompleteStart;
+    AutoCompleteTextView autoCompleteStop;
+
     List<String> stationDisp;
     ArrayList<Station> stations;
     private int themeSel;
-
+    ListStationAdapater adapater;
+    Path[] pathOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,34 +40,24 @@ public class TripPlanner extends AppCompatActivity {
 
         for(int i = 0; i < stations.size(); i++)
         {
-            station = stations.get(i);
+            Station station = stations.get(i);
             stationDisp.add(station.getFullName());
         }
 
-
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, stationDisp);
 
-
-
         //old code delete after:
-        AutoCompleteTextView start = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewStarting);
-        AutoCompleteTextView stop = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewEnding);
+        autoCompleteStart = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewStarting);
+        autoCompleteStop = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextViewEnding);
 
-        start.setAdapter(adapter);
-        stop.setAdapter(adapter);
-
-
-
+        autoCompleteStart.setAdapter(adapter);
+        autoCompleteStop.setAdapter(adapter);
 
         switch (caller){
             case "LocationStation":
-                startStation = (Station)intent.getSerializableExtra("startStation");
+                Station startStation = (Station)intent.getSerializableExtra("startStation");
                 Log.d("startStation",startStation.getFullName());
-                start.setText(startStation.getFullName());
-
-
-
+                autoCompleteStart.setText(startStation.getFullName());
                 break;
 
             case "MainActivity":
@@ -79,19 +72,36 @@ public class TripPlanner extends AppCompatActivity {
 
     public void findRoute(View v)
     {
-        // You need to call the static masterlist in the MainActivity because of ????
-        Station start = DataProcessor.findStation(MainActivity.masterList, "WTF");
-        Station end = DataProcessor.findStation(MainActivity.masterList, "BRD");
-        ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
-        //System.out.println(DataProcessor.findStation(stations, "CMB").getTransferPoint());
+        ListView listViewPossibleRoutes = (ListView)findViewById(R.id.listViewPossibleRoutes);
+        Station start = DataProcessor.findStation(MainActivity.masterList, autoCompleteStart.getText().toString());
+        Station end = DataProcessor.findStation(MainActivity.masterList, autoCompleteStop.getText().toString());
 
-        for (int i = 0; i < paths.size(); i++)
-        {
-            System.out.println("PATH NO." + (i+1) + " --------------------");
-            for (int j = 0; j < paths.get(i).pathStops.size(); j++)
-            {
-                System.out.println(paths.get(i).pathStops.get(j).getFullName());
-            }
+        if(start == null || end == null){
+            Toast.makeText(this, "Please select Start & Stop stations",Toast.LENGTH_LONG).show();
+            return;
+        }else if(start == end){
+            Toast.makeText(this, "Start & Stop stations should be different",Toast.LENGTH_LONG).show();
+            return;
         }
+
+        ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
+        pathOptions = new Path[paths.size()];
+        paths.toArray(pathOptions);
+
+        if(adapater == null){
+            adapater = new ListStationAdapater(this, pathOptions, ListStationAdapater.DISP.ROUTE_OPTIONS);
+            listViewPossibleRoutes.setAdapter(adapater);
+        }
+
+        listViewPossibleRoutes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(TripPlanner.this, RouteDisplay.class);
+                intent.putExtra("caller","TripPlanner");
+                intent.putExtra("route",pathOptions[i]);
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 }
