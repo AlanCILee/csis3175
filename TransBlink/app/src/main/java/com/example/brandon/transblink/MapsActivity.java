@@ -1,9 +1,11 @@
 package com.example.brandon.transblink;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,7 +15,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -23,6 +30,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String caller;
     double currentLatitude;
     double currentLongitude;
+    ArrayList<Station> routesht;
+    private PolylineOptions poly = new PolylineOptions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +46,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 currentLongitude = (Double)intent.getDoubleExtra("currentLongitude",-123.069258 );
                 stations = (Station[])intent.getSerializableExtra("nearStations");
                 break;
+            case "tripRoute":
+                routesht = (ArrayList<Station>) intent.getSerializableExtra("route");
+                try {
+                    setRoute();
+                } catch (Exception e) {
+                    Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
+
 
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -45,6 +63,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+
+
+
+
+    public void setRoute() throws IOException {
+        String line = "";
+        for(int i = 0; i < routesht.size()-1; i++) {
+
+            AssetManager am = this.getAssets();
+            InputStream is = am.open("coord.txt");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split("\\*");
+                String[] statName = data[0].split(",");
+                if (statName[0].equals(routesht.get(i).getCode()) && statName[1].equals(routesht.get(i+1).getCode()))
+                {
+                    for(int y = 1; y < data.length; y++ )
+                    {
+
+                        String[] holder = data[y].split(",");
+                        Double[] lonlat = new Double[2];
+                        lonlat[0] = Double.parseDouble(holder[0]);
+                        lonlat[1] = Double.parseDouble(holder[1]);
+                        poly.add(new LatLng(lonlat[0], lonlat[1]));
+                    }
+                }
+                else if(statName[0].equals(routesht.get(i+1).getCode()) && statName[1].equals(routesht.get(i).getCode()))
+                {
+                    for(int y = data.length; y > 1; y-- )
+                    {
+                        String[] holder = data[y-1].split(",");
+                        Double[] lonlat = new Double[2];
+                        lonlat[0] = Double.parseDouble(holder[0]);
+                        lonlat[1] = Double.parseDouble(holder[1]);
+                        poly.add(new LatLng(lonlat[0], lonlat[1]));
+                    }
+                }
+            }
+            br.close();
+        }
+        Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+    }
+
 
     /**
      * Manipulates the map once available.
@@ -68,6 +132,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     addMarker(station);
                 }
                 break;
+            case "tripRoute":
+                current = new LatLng(routesht.get(0).getLatitude(),(routesht.get(0).getLongitude()));
+                mMap.addMarker(new MarkerOptions().position(current).title("Your Location")).showInfoWindow();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 13));
+                mMap.addPolyline(poly);
+                for(Station station : routesht)
+                {
+                    addMarker(station);
+                }
+
+
         }
     }
 
