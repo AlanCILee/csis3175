@@ -3,6 +3,7 @@ import android.provider.ContactsContract;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Created by Matt on 12/02/2017.
@@ -55,7 +56,8 @@ public class Path implements Serializable
     public void setTransferInfo()
     {
         this.transferStations = new ArrayList<Station>();
-        //this.numTransfers = 0;
+        ArrayList<Station> stationQueue = new ArrayList<Station>(3);
+        this.numTransfers = 0;
 
         Station prevStation = null;
         Station.Lines currentLine = null;
@@ -66,6 +68,14 @@ public class Path implements Serializable
 
         for(int i=0; i<pathStops.size(); i++)
         {
+
+            if(stationQueue.size() <3 ){
+                stationQueue.add(pathStops.get(i));
+            }else{
+                stationQueue.remove(0);
+                stationQueue.add(pathStops.get(i));
+            }
+
             Station currentStation = pathStops.get(i);
             currentStationLines = currentStation.getLines();
 
@@ -81,23 +91,25 @@ public class Path implements Serializable
                 if (currentLine == null && currentStationLines.length == 1)
                 {
                     currentLine = currentStationLines[0];
-                }
-                else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0])
-                {
+                }else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0]) {
                     transferStations.add(prevStation);
                     numTransfers++;
                     currentLine = currentStationLines[0];
+                }else if(
+                    // Sapperton : Columbia : Scott Road case
+                            stationQueue.get(0).getCode().equalsIgnoreCase("SAP") && stationQueue.get(1).getCode().equalsIgnoreCase("COL") && stationQueue.get(2).getCode().equalsIgnoreCase("SCR")
+                            || stationQueue.get(0).getCode().equalsIgnoreCase("SCR") && stationQueue.get(1).getCode().equalsIgnoreCase("COL") && stationQueue.get(2).getCode().equalsIgnoreCase("SAP")
 
-//                Need check one more case
-//                } else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0]) {
-//                    transferStations.add(prevStation);
-//                    numTransfers++;
-//                    currentLine = currentStationLines[0];
-//                }
+                    // Aberdeen : Bridgeport : Templeton case
+                            || stationQueue.get(0).getCode().equalsIgnoreCase("TPL") && stationQueue.get(1).getCode().equalsIgnoreCase("BRP") && stationQueue.get(2).getCode().equalsIgnoreCase("ABD")
+                            || stationQueue.get(0).getCode().equalsIgnoreCase("ABD") && stationQueue.get(1).getCode().equalsIgnoreCase("BRP") && stationQueue.get(2).getCode().equalsIgnoreCase("TPL")
+                    ){
+                        transferStations.add(prevStation);
+                        numTransfers++;
                 }
 
-                prevStation = currentStation;
             }
+            prevStation = currentStation;
         }
     }
 
