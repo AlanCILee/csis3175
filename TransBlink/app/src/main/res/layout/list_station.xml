@@ -12,15 +12,15 @@
 
             <TextView
                 android:text="Station Title"
-                android:textSize="18dp"
                 android:id="@+id/tvStationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:attr/colorPrimary" />
+                android:textColor="?android:attr/colorPrimary"
+                android:textSize="22sp" />
 
             <TextView
                 android:text="Station Description"
-                android:textSize="15dp"
+                android:textSize="18sp"
                 android:id="@+id/tvStationDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

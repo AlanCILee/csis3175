@@ -13,21 +13,6 @@
     style="@style/Theme.AppCompat.Light.DarkActionBar">
 
     <Button
-        android:text="@string/btnMap"
-        android:onClick="goToStationMap"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonGoToStationChoosing"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/buttonGoToStationMap"
-        android:textStyle="normal|bold"
-
-        android:background="?android:attr/colorPrimaryDark"
-        android:textColor="?android:attr/colorAccent"
-        android:textSize="20sp" />
-
-    <Button
         android:text="@string/btnNearest"
         android:onClick="goToNearestStation"
         android:layout_width="300dp"
@@ -38,17 +23,8 @@
         android:textColor="?android:attr/colorAccent"
         android:layout_marginBottom="30dp"
         android:layout_above="@+id/buttonGoToStationMap"
-
         android:layout_alignStart="@+id/buttonGoToStationMap"
         android:textSize="20sp" />
-
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="180dp"
-        app:srcCompat="@drawable/transblinktransparent"
-        android:id="@+id/imageViewTransBlinkLogo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="@string/btnThemes"
@@ -77,5 +53,28 @@
         android:layout_above="@+id/buttonGoToTheme"
         android:layout_alignStart="@+id/buttonGoToStationMap"
         android:layout_marginBottom="30dp" />
+
+    <Button
+        android:text="@string/btnMap"
+        android:onClick="goToStationMap"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="31dp"
+        android:id="@+id/buttonGoToStationMap"
+        android:textStyle="normal|bold"
+
+        android:background="?android:attr/colorPrimaryDark"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="20sp"
+        android:layout_above="@+id/buttonGoToStationChoosing"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/transblinktransparent"
+        android:id="@+id/imageViewTransBlinkLogo"
+        android:layout_above="@+id/buttonGoToNearestStation"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

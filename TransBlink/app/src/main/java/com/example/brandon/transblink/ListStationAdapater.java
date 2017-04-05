@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class ListStationAdapater extends ArrayAdapter{
-    public static enum DISP { NEARSTATION, ROUTE_OPTIONS };        // Display Mode for other List
+    public static enum DISP { NEARSTATION, ROUTE_OPTIONS, ROUTE_DISPLAY };        // Display Mode for other List
 
     private Activity context;
     private Station[] stations;
@@ -62,6 +62,10 @@ public class ListStationAdapater extends ArrayAdapter{
 
             case ROUTE_OPTIONS:
                 showRouteOptions(position, convertView);
+                break;
+
+            case ROUTE_DISPLAY:
+                showRouteChosen(position, convertView);
                 break;
 
         }
@@ -109,15 +113,30 @@ public class ListStationAdapater extends ArrayAdapter{
 
 
         if(numOfTransfers !=0){
-            transferInfo += numOfTransfers+ " time Transer";
+            transferInfo += numOfTransfers+ " time Transfer";
             for (int i=0; i<path.transferStations.size(); i++){
                 transferInfo += "\n";
                 transferInfo += (i+1)+ ": "+path.transferStations.get(i).getFullName();
             }
         }else{
-            transferInfo += "No Transer";
+            transferInfo += "No Transfer";
         }
 
         txtDesc.setText(transferInfo);
+    }
+
+
+    public void showRouteChosen(int position, View convertView){
+
+        Path path = paths[position];
+
+
+
+        for(int i = 0; i<path.pathStops.size(); i++) {
+            txtTitle.setText("Station "+(position+1)+path.pathStops.get(i).getFullName());
+        }
+
+
+
     }
 }

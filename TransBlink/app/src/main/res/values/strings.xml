@@ -1,22 +1,12 @@
 <resources>
     <string name="app_name">TransBlink</string>
-    <string name="btnStnInfo">Station Information</string>
     <string name="btnNearest">Find Nearest Station</string>
     <string name="btnMap">Skytrain Stations Map</string>
     <string name="btnTrip">Choose Stations For Trip</string>
-    <string name="btnAbout">About Us</string>
-    <string name="btnChange">ChangeLog</string>
     <string name="btnThemes">Themes</string>
     <string name="lblLocation">Tap a station to set as start point</string>
     <string name="hintStarting">Enter Starting Station Here</string>
     <string name="hintDestination">Enter Destination Station Here</string>
     <string name="btnChangeTheme">Change Theme</string>
-    <string-array name="aboutUsArray">
-        <item>The Dev Team</item>
-        <item>Alan Lee</item>
-        <item>Andrew Turner</item>
-        <item>Brandon Frison</item>
-        <item>Matt Lai</item>
-    </string-array>
     <string name="title_activity_maps">Map</string>
 </resources>
