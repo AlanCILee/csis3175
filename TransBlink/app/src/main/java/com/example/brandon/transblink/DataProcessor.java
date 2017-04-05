@@ -139,6 +139,12 @@ public class DataProcessor
             routePaths.add(additionalPaths.get(z));
         }
 
+        // This loop sets the data for each path
+        for (int z = 0; z < routePaths.size(); z++)
+        {
+            setData(routePaths.get(z));
+        }
+
         return routePaths;
     }
 
@@ -244,6 +250,7 @@ public class DataProcessor
     }
 
     //sets the data for each path; call this shit in a loop
+    // Matt (to Alan): if you're making a method to set the transfer data, shove it in this method kthnx
     private static void setData(Path thePath)
     {
         thePath.setNumStops();

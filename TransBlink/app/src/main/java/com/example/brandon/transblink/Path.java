@@ -16,6 +16,8 @@ public class Path implements Serializable
     private int numStops;
     private int numTransfers;
     private int zoneChanges;
+    private double regPrice;
+    private double conPrice;
     public ArrayList<Station> pathStops; //should this be public?
     public ArrayList<String> traversed;
     public ArrayList<Station> transferStations;
@@ -31,6 +33,8 @@ public class Path implements Serializable
         this.pathStops = new ArrayList<Station>();
         this.traversed = new ArrayList<String>();
 
+        this.conPrice = 0.00;
+        this.regPrice = 0.00;
         //this.master = MainActivity.masterList;
 
     }
@@ -48,9 +52,10 @@ public class Path implements Serializable
         this.traversed = new ArrayList<>(old.traversed);
     }
 
-    public void setTransferInfo(){
+    public void setTransferInfo()
+    {
         this.transferStations = new ArrayList<Station>();
-        this.numTransfers = 0;
+        //this.numTransfers = 0;
 
         Station prevStation = null;
         Station.Lines currentLine = null;
@@ -59,19 +64,26 @@ public class Path implements Serializable
         if(pathStops == null || pathStops.size() ==0)
             return;
 
-        for(int i=0; i<pathStops.size(); i++){
+        for(int i=0; i<pathStops.size(); i++)
+        {
             Station currentStation = pathStops.get(i);
             currentStationLines = currentStation.getLines();
 
-            if(i==0){
+            if(i==0)
+            {
                 prevStation = currentStation;
                 if(currentStationLines.length == 1)
                     currentLine = currentStationLines[0];
 
-            }else {
-                if (currentLine == null && currentStationLines.length == 1) {
+            }
+            else
+            {
+                if (currentLine == null && currentStationLines.length == 1)
+                {
                     currentLine = currentStationLines[0];
-                } else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0]) {
+                }
+                else if (currentLine != null && currentStationLines.length == 1 && currentLine != currentStationLines[0])
+                {
                     transferStations.add(prevStation);
                     numTransfers++;
                     currentLine = currentStationLines[0];
@@ -82,7 +94,7 @@ public class Path implements Serializable
 //                    numTransfers++;
 //                    currentLine = currentStationLines[0];
 //                }
-            }
+                }
 
                 prevStation = currentStation;
             }
@@ -118,9 +130,23 @@ public class Path implements Serializable
         return this.zoneChanges;
     }
 
-    public void setZoneChanges(int a)
+    //This will actually calculate the number of zone changes
+    public void setZoneChanges()
     {
-        this.zoneChanges = a;
+        int changes = 0;
+
+        for (int i = 0; i < this.pathStops.size() - 1; i++)
+        {
+            Station current = this.pathStops.get(i);
+            Station next = this.pathStops.get(i+1);
+
+            if (current.getZone() == next.getZone())
+                continue;
+
+            changes++;
+        }
+
+        this.zoneChanges = changes;
     }
 
     public Station getPreviousStn()
