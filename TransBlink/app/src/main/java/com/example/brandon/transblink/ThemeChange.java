@@ -35,7 +35,33 @@ public class ThemeChange extends AppCompatActivity {
         setTheme(themeSel);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme_change);
+
+        RadioButton def = (RadioButton) findViewById(R.id.radioButtonDefaultTheme);
+        RadioButton dark= (RadioButton) findViewById(R.id.radioButtonDarkTheme);
+        RadioButton light = (RadioButton) findViewById(R.id.radioButtonLightTheme);
+        RadioButton crazy = (RadioButton) findViewById(R.id.radioButtonCrazyTheme);
+
+        switch(themeSel)
+        {
+            case R.style.AppTheme:
+                def.setChecked(true);
+                break;
+            case R.style.themeLight:
+                light.setChecked(true);
+                break;
+            case R.style.themeDark:
+                dark.setChecked(true);
+                break;
+            case R.style.themeCrazy:
+                crazy.setChecked(true);
+                break;
+            default:
+                def.setChecked(true);
+                break;
+        }
+
         Button theme = (Button) findViewById(R.id.buttonChangeTheme);
+
         theme.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -43,6 +69,8 @@ public class ThemeChange extends AppCompatActivity {
                 themeChg();
             }
         }
+
+
         );
 
     }
@@ -50,16 +78,11 @@ public class ThemeChange extends AppCompatActivity {
     public void themeChg()
     {
 
-
         RadioButton def = (RadioButton) findViewById(R.id.radioButtonDefaultTheme);
         RadioButton dark= (RadioButton) findViewById(R.id.radioButtonDarkTheme);
         RadioButton light = (RadioButton) findViewById(R.id.radioButtonLightTheme);
         RadioButton crazy = (RadioButton) findViewById(R.id.radioButtonCrazyTheme);
-
         String hold = "";
-
-
-
 
         if(def.isChecked())
         {
@@ -99,6 +122,9 @@ public class ThemeChange extends AppCompatActivity {
 
     public int findTheme(Context con)  {
         String choice ="";
+
+
+
         try
         {
 
@@ -113,6 +139,8 @@ public class ThemeChange extends AppCompatActivity {
         {
 
         }
+
+
 
         switch (choice)
         {
