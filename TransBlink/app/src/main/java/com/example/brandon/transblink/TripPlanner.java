@@ -98,7 +98,7 @@ public class TripPlanner extends AppCompatActivity {
 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(listViewPossibleRoutes.getWindowToken(),0);
-        
+
         listViewPossibleRoutes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

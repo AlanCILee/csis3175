@@ -24,9 +24,8 @@ public class ListStationAdapater extends ArrayAdapter{
     private Activity context;
     private Station[] stations;
     private Path[] paths;
-
+    private Path path;
     private DISP displayMode;
-
 
     TextView txtTitle;
     TextView txtDesc;
@@ -41,6 +40,13 @@ public class ListStationAdapater extends ArrayAdapter{
     public ListStationAdapater(Activity context, Path[] paths, DISP mode ) {
         super(context, R.layout.list_station, paths);
         this.paths = paths;
+        this.context = context;
+        this.displayMode = mode;
+    }
+
+    public ListStationAdapater(Activity context, Path path, DISP mode ) {
+        super(context, R.layout.list_station, path.pathStops);
+        this.path = path;
         this.context = context;
         this.displayMode = mode;
     }
@@ -111,7 +117,6 @@ public class ListStationAdapater extends ArrayAdapter{
         String transferInfo = "";
         txtTitle.setText("Path Option "+ (position+1) +": "+numOfStations+" Stops");
 
-
         if(numOfTransfers !=0){
             transferInfo += numOfTransfers+ " time Transfer";
             for (int i=0; i<path.transferStations.size(); i++){
@@ -121,22 +126,62 @@ public class ListStationAdapater extends ArrayAdapter{
         }else{
             transferInfo += "No Transfer";
         }
-
         txtDesc.setText(transferInfo);
     }
 
 
     public void showRouteChosen(int position, View convertView){
+        Station currentStation = path.pathStops.get(position);
+        Station nextStation = null;
 
-        Path path = paths[position];
+        if(position < path.pathStops.size()-1){
+            nextStation = path.pathStops.get(position+1);
+        }
+        txtTitle.setText(currentStation.getFullName());
 
+        if(path.transferStations.contains(currentStation) && nextStation !=null){
+            txtDesc.setText("["+ nextStation.getLines()[0] + "] to "+nextStation.getFullName());
+//            switch(nextStation.getLines()[0]){
+//                case Expo:
+//                    txtDesc.setTextColor(Color.parseColor("#458fef"));
+//                    break;
+//
+//                case Millennium:
+//                    txtDesc.setTextColor(Color.parseColor("#f4dc42"));
+//                    break;
+//
+//                case Canada:
+//                    txtDesc.setTextColor(Color.parseColor("#41e2f4"));
+//                    break;
+//            }
 
-
-        for(int i = 0; i<path.pathStops.size(); i++) {
-            txtTitle.setText("Station "+(position+1)+path.pathStops.get(i).getFullName());
+        }else{
+            txtDesc.setText("");
         }
 
+        Button[] lineColors = new Button[2];
+        lineColors[0] = (Button)convertView.findViewById(R.id.line1);
+        lineColors[0].setBackgroundColor(0);
+        lineColors[1] = (Button)convertView.findViewById(R.id.line2);
+        lineColors[1].setBackgroundColor(0);
 
+        Station.Lines[] lines = path.pathStops.get(position).getLines();
+        for(int i=0; i<lines.length; i++){
+            int color = 0;
+            switch (lines[i]){
+                case Expo:
+                    color = Color.parseColor("#458fef");
+                    break;
 
+                case Millennium:
+                    color = Color.parseColor("#f4f442");
+                    break;
+
+                case Canada:
+                    color = Color.parseColor("#41e2f4");
+                    break;
+            }
+            lineColors[i].setBackgroundColor(color);
+        }
     }
 }

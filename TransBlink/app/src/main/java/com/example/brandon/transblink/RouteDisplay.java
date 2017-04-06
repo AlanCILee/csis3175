@@ -14,6 +14,7 @@ public class RouteDisplay extends AppCompatActivity {
     public int themeSel;
     ArrayList<Station> pathStations;
     Station[] routeStations;
+    ListView listViewSelectedRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,27 +23,23 @@ public class RouteDisplay extends AppCompatActivity {
         themeSel = themeChg.findTheme(this);
         setTheme(themeSel);
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_display);
 
-        ListView listViewSelectedRoute = (ListView)findViewById(R.id.listViewStationByStationRoute);
+        listViewSelectedRoute = (ListView)findViewById(R.id.listViewStationByStationRoute);
         String caller = (String)intent.getSerializableExtra("caller");
         Path path = (Path)intent.getSerializableExtra("route");
+
         pathStations = path.pathStops;
 
         for(int i=0; i< pathStations.size(); i++) {
             Log.i("RouteDisplay route :", pathStations.get(i).getFullName());
         }
+//        routeStations = new Station[pathStations.size()];
+//        pathStations.toArray(routeStations);
 
-        routeStations = new Station[pathStations.size()];
-        pathStations.toArray(routeStations);
-
-        ListStationAdapater adapter = new ListStationAdapater(this, routeStations, ListStationAdapater.DISP.ROUTE_DISPLAY);
+        ListStationAdapater adapter = new ListStationAdapater(this, path, ListStationAdapater.DISP.ROUTE_DISPLAY);
         listViewSelectedRoute.setAdapter(adapter);
-
-        adapter.notifyDataSetChanged();
-
     }
 
     public void drawRouteOnMap(View v){
@@ -52,9 +49,5 @@ public class RouteDisplay extends AppCompatActivity {
         intent.putExtra("route",pathStations);
 
         startActivity(intent);
-
-
-
-
     }
 }

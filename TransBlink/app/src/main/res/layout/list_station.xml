@@ -19,7 +19,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:text="Station Description"
+                android:text=""
                 android:textSize="18sp"
                 android:id="@+id/tvStationDesc"
                 android:layout_width="wrap_content"
