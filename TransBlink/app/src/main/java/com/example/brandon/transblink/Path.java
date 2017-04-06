@@ -16,9 +16,6 @@ public class Path implements Serializable
     private Station endStn;
     private int numStops;
     private int numTransfers;
-    private int zoneChanges;
-    private double regPrice;
-    private double conPrice;
     public ArrayList<Station> pathStops; //should this be public?
     public ArrayList<String> traversed;
     public ArrayList<Station> transferStations;
@@ -29,15 +26,9 @@ public class Path implements Serializable
         this.endStn = b;
         this.previousStn = null;
         this.numStops = 0;
-        this.zoneChanges = 0;
         this.numTransfers = 0;
         this.pathStops = new ArrayList<Station>();
         this.traversed = new ArrayList<String>();
-
-        this.conPrice = 0.00;
-        this.regPrice = 0.00;
-        //this.master = MainActivity.masterList;
-
     }
 
     //copy constructor
@@ -47,7 +38,6 @@ public class Path implements Serializable
         this.endStn = old.endStn;
         this.previousStn = null;
         this.numStops = 0;
-        this.zoneChanges = 0;
         this.numTransfers = 0;
         this.pathStops = new ArrayList<>(old.pathStops);
         this.traversed = new ArrayList<>(old.traversed);
@@ -135,30 +125,6 @@ public class Path implements Serializable
     public void setNumTransfers(int a)
     {
         this.numTransfers = a;
-    }
-
-    public int getZoneChanges()
-    {
-        return this.zoneChanges;
-    }
-
-    //This will actually calculate the number of zone changes
-    public void setZoneChanges()
-    {
-        int changes = 0;
-
-        for (int i = 0; i < this.pathStops.size() - 1; i++)
-        {
-            Station current = this.pathStops.get(i);
-            Station next = this.pathStops.get(i+1);
-
-            if (current.getZone() == next.getZone())
-                continue;
-
-            changes++;
-        }
-
-        this.zoneChanges = changes;
     }
 
     public Station getPreviousStn()

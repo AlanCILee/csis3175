@@ -40,36 +40,6 @@ public class DataProcessor
         return result;
     }
 
-    //turns a line code into a not line code
-    public static String translateLine(String lineCode)
-    {
-        if (lineCode.equals("EXPO"))
-            return "Expo Line";
-        else if (lineCode.equals("MILL"))
-            return "Millenium Line";
-        else
-            return "Canada Line";
-    }
-
-    //turns a train code into a not train code
-    public static String translateTrain(String trainCode)
-    {
-        if (trainCode.equals("PWAYU"))
-            return "Production Way/University";
-        else if (trainCode.equals("KGEORGE"))
-            return "King George";
-        else if (trainCode.equals("LLDOUG"))
-            return "Lafarge Lake-Douglas";
-        else if (trainCode.equals("VCCCL"))
-            return "VCC-Clark";
-        else if (trainCode.equals("RICHBR"))
-            return "Richmond-Brighouse";
-        else if (trainCode.equals("YVRA"))
-            return "YVR-Airport";
-        else
-            return "Waterfront";
-    }
-
     //calculate and return the shortest route between two points
     //Note: this will be the production version method
     public static ArrayList<Path> findRoutes(Station start, Station end)
