@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:descendantFocusability="blocksDescendants"
     android:layout_width="match_parent"
@@ -15,7 +16,7 @@
                 android:id="@+id/tvStationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:attr/colorPrimary"
+                android:textColor="?android:attr/colorAccent"
                 android:textSize="22sp" />
 
             <TextView
@@ -24,7 +25,7 @@
                 android:id="@+id/tvStationDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?android:attr/colorPrimary" />
+                android:textColor="?android:attr/colorAccent" />
 
     </LinearLayout>
 

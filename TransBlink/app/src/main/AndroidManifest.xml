@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".TripPlanner" />
-        <activity android:name=".StationMap" />
         <activity android:name=".LocationStation" />
         <activity android:name=".ThemeChange" />
         <!--

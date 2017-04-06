@@ -108,12 +108,7 @@ public class MainActivity extends AppCompatActivity
 
         startActivity(intent);
     }
-    public void goToStationMap(View v)
-    {
-        Intent intent = new Intent(MainActivity.this, StationMap.class);
 
-        startActivity(intent);
-    }
     public void goToNearestStation(View v)
     {
         GPS gps = GPS.getGPSInstance(this);

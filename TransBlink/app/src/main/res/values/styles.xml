@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
+
     </style>
 
     <style name="themeDark" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -25,6 +26,7 @@
         <item name="colorPrimaryDark">@color/lightSecondary</item>
         <item name="colorAccent">@color/lightAccent</item>
 
+
     </style>
 
     <style name="themeCrazy" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -32,6 +34,8 @@
         <item name="colorPrimary">@color/crazyPrimary</item>
         <item name="colorPrimaryDark">@color/crazySecondary</item>
         <item name="colorAccent">@color/crazyAccent</item>
+
+
 
     </style>
 
