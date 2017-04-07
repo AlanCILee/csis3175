@@ -2,6 +2,7 @@ package com.example.brandon.transblink;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -70,6 +71,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void setRoute() throws IOException {
         String line = "";
+        poly.color(getResources().getColor(R.color.lightAccent));
+        poly.width(50);
         for(int i = 0; i < routesht.size()-1; i++) {
 
             AssetManager am = this.getAssets();
@@ -106,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             br.close();
         }
-        Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -134,7 +137,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 break;
             case "tripRoute":
                 current = new LatLng(routesht.get(0).getLatitude(),(routesht.get(0).getLongitude()));
-                mMap.addMarker(new MarkerOptions().position(current).title("Your Location")).showInfoWindow();
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 13));
                 mMap.addPolyline(poly);
                 for(Station station : routesht)
