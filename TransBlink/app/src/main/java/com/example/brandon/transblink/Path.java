@@ -46,7 +46,7 @@ public class Path implements Serializable
     public void setTransferInfo()
     {
         this.transferStations = new ArrayList<Station>();
-        ArrayList<Station> stationQueue = new ArrayList<Station>(3);
+        ArrayList<Station> stationQueue = new ArrayList<Station>();
         this.numTransfers = 0;
 
         Station prevStation = null;
@@ -85,14 +85,14 @@ public class Path implements Serializable
                     transferStations.add(prevStation);
                     numTransfers++;
                     currentLine = currentStationLines[0];
-                }else if(
+                }else if(stationQueue.size() >=3 && (
                     // Sapperton : Columbia : Scott Road case
                             stationQueue.get(0).getCode().equalsIgnoreCase("SAP") && stationQueue.get(1).getCode().equalsIgnoreCase("COL") && stationQueue.get(2).getCode().equalsIgnoreCase("SCR")
                             || stationQueue.get(0).getCode().equalsIgnoreCase("SCR") && stationQueue.get(1).getCode().equalsIgnoreCase("COL") && stationQueue.get(2).getCode().equalsIgnoreCase("SAP")
 
                     // Aberdeen : Bridgeport : Templeton case
                             || stationQueue.get(0).getCode().equalsIgnoreCase("TPL") && stationQueue.get(1).getCode().equalsIgnoreCase("BRP") && stationQueue.get(2).getCode().equalsIgnoreCase("ABD")
-                            || stationQueue.get(0).getCode().equalsIgnoreCase("ABD") && stationQueue.get(1).getCode().equalsIgnoreCase("BRP") && stationQueue.get(2).getCode().equalsIgnoreCase("TPL")
+                            || stationQueue.get(0).getCode().equalsIgnoreCase("ABD") && stationQueue.get(1).getCode().equalsIgnoreCase("BRP") && stationQueue.get(2).getCode().equalsIgnoreCase("TPL"))
                     ){
                         transferStations.add(prevStation);
                         numTransfers++;
