@@ -240,7 +240,15 @@ public class ThemeChange extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(inFile);
             BufferedReader br = new BufferedReader(isr);
             Filereadline = br.readLine();
-            choice = Filereadline.split(",");
+            if(Filereadline == "")
+            {
+                choice[0] = "1";
+                choice[1] = "1";
+
+            }
+            else {
+                choice = Filereadline.split(",");
+            }
             inFile.close();
 
         }
@@ -264,7 +272,15 @@ public class ThemeChange extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(inFile);
             BufferedReader br = new BufferedReader(isr);
             Filereadline = br.readLine();
-            choice = Filereadline.split(",");
+            if(Filereadline == "")
+            {
+                choice[0] = "1";
+                choice[1] = "1";
+
+            }
+            else {
+                choice = Filereadline.split(",");
+            }
             inFile.close();
 
         }
