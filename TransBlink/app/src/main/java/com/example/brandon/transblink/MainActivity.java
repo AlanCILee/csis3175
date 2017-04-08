@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import android.content.Context;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity
             //some shit goes here
         }
     }
+
 
     // Station initialize with station information string
     private void initStations() throws IOException

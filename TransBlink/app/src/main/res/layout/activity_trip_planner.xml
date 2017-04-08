@@ -36,9 +36,13 @@
         android:id="@+id/listViewPossibleRoutes"
         android:layout_below="@+id/buttonFindRoutes"
         android:layout_centerHorizontal="true"
+        android:paddingBottom="3dip"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:paddingTop="3dip"
         android:divider="?android:attr/colorPrimaryDark"
         android:dividerHeight="2sp"
-        android:background="?android:attr/colorPrimary" />
+        android:background="@drawable/list_selector" />
 
     <AutoCompleteTextView
         android:text=""

@@ -18,10 +18,14 @@
         android:id="@+id/listViewStationByStationRoute"
         android:layout_below="@+id/textViewRouteLabel"
         android:layout_centerHorizontal="true"
+        android:paddingBottom="3dip"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:paddingTop="3dip"
         android:layout_marginTop="25dip"
         android:dividerHeight="2sp"
         android:divider="?android:attr/colorPrimaryDark"
-        android:background="?android:attr/colorPrimary" />
+        android:background="@drawable/list_selector" />
 
     <TextView
         android:text="@string/routeLabel"

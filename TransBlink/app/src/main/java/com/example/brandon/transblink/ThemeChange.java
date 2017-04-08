@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -208,9 +209,10 @@ public class ThemeChange extends AppCompatActivity {
 
         try
         {
-            OutputStreamWriter outFile = new OutputStreamWriter(openFileOutput("theme.txt", Context.MODE_PRIVATE));
-            outFile.write(hold + "," + font);
-            outFile.close();
+
+                OutputStreamWriter outFile = new OutputStreamWriter(openFileOutput("theme.txt", Context.MODE_PRIVATE));
+                outFile.write(hold + "," + font);
+                outFile.close();
 
         }
         catch (Exception ex)
@@ -276,8 +278,10 @@ public class ThemeChange extends AppCompatActivity {
 
 
     public int findTheme(Context con)  {
-        String Filereadline = "";
+
         String[] choice = new String[2];
+        String Filereadline = "";
+
         try
         {
 
@@ -285,7 +289,15 @@ public class ThemeChange extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(inFile);
             BufferedReader br = new BufferedReader(isr);
             Filereadline = br.readLine();
-            choice = Filereadline.split(",");
+            if(Filereadline == "")
+            {
+                choice[0] = "1";
+                choice[1] = "1";
+
+            }
+            else {
+                choice = Filereadline.split(",");
+            }
             inFile.close();
 
         }
