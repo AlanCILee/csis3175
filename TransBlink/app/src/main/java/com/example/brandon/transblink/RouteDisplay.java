@@ -15,7 +15,7 @@ public class RouteDisplay extends AppCompatActivity {
     ArrayList<Station> pathStations;
     Station[] routeStations;
     ListView listViewSelectedRoute;
-
+/*
     @Override
     public void onBackPressed()
     {
@@ -28,7 +28,7 @@ public class RouteDisplay extends AppCompatActivity {
         startActivity(intent);
         finish();
 
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

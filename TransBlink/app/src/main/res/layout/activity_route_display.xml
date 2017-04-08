@@ -40,6 +40,7 @@
         android:onClick="drawRouteOnMap"
         app:srcCompat="@drawable/mapicon"
         android:id="@+id/imageViewMapIcon"
+        android:background="@drawable/image_border"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

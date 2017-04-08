@@ -105,7 +105,7 @@ public class TripPlanner extends AppCompatActivity {
                 Intent intent = new Intent(TripPlanner.this, RouteDisplay.class);
                 intent.putExtra("caller","TripPlanner");
                 intent.putExtra("route",pathOptions[i]);
-                finish();
+                //finish();
                 startActivity(intent);
             }
         });

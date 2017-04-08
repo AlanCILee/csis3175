@@ -16,7 +16,7 @@
         android:layout_width="222dip"
         android:layout_height="wrap_content"
         android:id="@+id/buttonChangeTheme"
-        android:background="?android:attr/colorPrimary"
+        android:background="@drawable/button_selector"
         android:textColor="?android:attr/colorAccent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
