@@ -14,8 +14,9 @@
 
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_alignRight="@+id/textViewLocationLabel"
         android:onClick="showMap"
         app:srcCompat="@drawable/mapicon"
         android:id="@+id/imageView"
@@ -26,22 +27,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listViewNearbyStations"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/textViewLocationLabel"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dip"
         android:background="?android:attr/colorPrimary"
         android:divider="?android:attr/colorPrimaryDark"
-        android:dividerHeight="2dp" />
+        android:dividerHeight="2dip" />
 
     <TextView
         android:text="@string/lblLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewLocationLabel"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
-        android:textColor="?android:attr/colorPrimary" />
+        android:layout_marginTop="13dip"
+        android:textColor="?android:attr/colorPrimary"
+        android:textSize="20sp" />
 </RelativeLayout>

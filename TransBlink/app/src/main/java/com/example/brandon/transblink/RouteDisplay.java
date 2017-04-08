@@ -17,6 +17,20 @@ public class RouteDisplay extends AppCompatActivity {
     ListView listViewSelectedRoute;
 
     @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent intent = new Intent(RouteDisplay.this, TripPlanner.class);
+
+        //not sure what to put here but it definetly needs either the list with the possible routes or the text fields entered in trip planner.
+        //intent.putExtra("stations", );
+
+        startActivity(intent);
+        finish();
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent =  getIntent();
         ThemeChange themeChg = new ThemeChange();

@@ -9,4 +9,7 @@
     <string name="hintDestination">Enter Destination Station Here</string>
     <string name="btnChangeTheme">Change Theme</string>
     <string name="title_activity_maps">Map</string>
+    <string name="themeLabel"><u>Select Theme</u></string>
+    <string name="fontLabel"><u>Select Font</u></string>
+    <string name="routeLabel"><b><u>Station order of your route</u></b></string>
 </resources>

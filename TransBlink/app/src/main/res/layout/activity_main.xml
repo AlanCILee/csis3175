@@ -16,13 +16,13 @@
     <Button
         android:text="@string/btnNearest"
         android:onClick="goToNearestStation"
-        android:layout_width="300dp"
+        android:layout_width="300dip"
         android:layout_height="wrap_content"
         android:id="@+id/buttonGoToNearestStation"
         android:textStyle="normal|bold"
         android:background="?android:attr/colorPrimary"
         android:textColor="?android:attr/colorAccent"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="30dip"
         android:layout_below="@+id/buttonGoToStationChoosing"
         android:layout_alignStart="@+id/buttonGoToStationChoosing"
         android:textSize="20sp" />
@@ -30,7 +30,7 @@
     <Button
         android:text="@string/btnThemes"
         android:onClick="goToThemeChange"
-        android:layout_width="300dp"
+        android:layout_width="300dip"
         android:layout_height="wrap_content"
 
         android:id="@+id/buttonGoToTheme"
@@ -39,14 +39,14 @@
         android:textColor="?android:attr/colorAccent"
         android:textSize="20sp"
         android:layout_below="@+id/buttonGoToNearestStation"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="30dip"
 
         android:layout_alignStart="@+id/buttonGoToStationChoosing" />
 
     <Button
         android:text="@string/btnTrip"
         android:onClick="goToTripPlanner"
-        android:layout_width="300dp"
+        android:layout_width="300dip"
         android:layout_height="wrap_content"
         android:id="@+id/buttonGoToStationChoosing"
         android:textStyle="normal|bold"
@@ -55,12 +55,12 @@
         android:textSize="20sp"
         android:layout_below="@+id/imageViewTransBlinkLogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dip" />
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_marginTop="1dp"
-        android:layout_height="180dp"
+        android:layout_width="250dip"
+        android:layout_marginTop="1dip"
+        android:layout_height="180dip"
         app:srcCompat="@drawable/transblinktransparent"
         android:id="@+id/imageViewTransBlinkLogo"
         android:layout_centerHorizontal="true" />
