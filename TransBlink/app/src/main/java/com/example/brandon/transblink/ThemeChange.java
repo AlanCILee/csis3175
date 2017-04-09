@@ -33,6 +33,7 @@ public class ThemeChange extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         ThemeChange themeChg = new ThemeChange();
         themeSel = themeChg.findTheme(this);
         fontSel = themeChg.findFont(this);
@@ -209,11 +210,9 @@ public class ThemeChange extends AppCompatActivity {
 
         try
         {
-
                 OutputStreamWriter outFile = new OutputStreamWriter(openFileOutput("theme.txt", Context.MODE_PRIVATE));
                 outFile.write(hold + "," + font);
                 outFile.close();
-
         }
         catch (Exception ex)
         {
@@ -240,7 +239,7 @@ public class ThemeChange extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(inFile);
             BufferedReader br = new BufferedReader(isr);
             Filereadline = br.readLine();
-            if(Filereadline == "")
+            if(Filereadline.equals(""))
             {
                 choice[0] = "1";
                 choice[1] = "1";
@@ -251,13 +250,14 @@ public class ThemeChange extends AppCompatActivity {
             }
             inFile.close();
 
+            return Integer.parseInt(choice[1]);
         }
         catch (Exception ex)
         {
-
+            return 1;
         }
 
-        return Integer.parseInt(choice[1]);
+
     }
 
     public int findColour(Context con){
@@ -272,7 +272,7 @@ public class ThemeChange extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(inFile);
             BufferedReader br = new BufferedReader(isr);
             Filereadline = br.readLine();
-            if(Filereadline == "")
+            if(Filereadline.equals(""))
             {
                 choice[0] = "1";
                 choice[1] = "1";
@@ -283,13 +283,14 @@ public class ThemeChange extends AppCompatActivity {
             }
             inFile.close();
 
+            return Integer.parseInt(choice[0]);
         }
         catch (Exception ex)
         {
-
+            return 1;
         }
 
-        return Integer.parseInt(choice[0]);
+
     }
 
 
@@ -305,11 +306,10 @@ public class ThemeChange extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(inFile);
             BufferedReader br = new BufferedReader(isr);
             Filereadline = br.readLine();
-            if(Filereadline == "")
+            if(Filereadline.equals(""))
             {
                 choice[0] = "1";
                 choice[1] = "1";
-
             }
             else {
                 choice = Filereadline.split(",");
@@ -319,7 +319,7 @@ public class ThemeChange extends AppCompatActivity {
         }
         catch (Exception ex)
         {
-
+            return 1;
         }
 
 
