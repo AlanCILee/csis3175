@@ -194,6 +194,14 @@ public class Path implements Serializable
 
     public void insertPaths(Path add)
     {
+        /*
+        System.out.print("ADDING PATHS ");
+        DataProcessor.printPath(add);
+        System.out.print("-TO- ");
+        DataProcessor.printPath(this);
+        System.out.println("");
+        */
+
         for (int i = add.pathStops.size() - 1; i >= 0; i--)
         {
             if (!this.pathStops.contains(add.pathStops.get(i)))
@@ -202,5 +210,11 @@ public class Path implements Serializable
                 this.numStops = this.pathStops.size();
             }
         }
+
+        /*
+        System.out.print("AFTER ADDING: ");
+        DataProcessor.printPath(this);
+        System.out.println("");
+        */
     }
 }

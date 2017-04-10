@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         //ALGORITHM TESTING: UNCOMMENT AT OWN RISK
         //RUN THIS SHIT IN DEBUG IF YOU WANT TO SEE ANYTHING
-
+        /*
         Station start = DataProcessor.findStation(masterList, "WTF");
         Station end = DataProcessor.findStation(masterList, "BRD");
         ArrayList<Path> paths = DataProcessor.findRoutes(start, end);
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
                 System.out.println(paths.get(i).pathStops.get(j).getFullName());
             }
         }
+        */
 
     }
 

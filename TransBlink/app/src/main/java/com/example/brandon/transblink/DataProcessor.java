@@ -48,6 +48,14 @@ public class DataProcessor
         System.out.println("FIRST GENERATION, " + routePaths.size() + " PATHS CREATED");
         System.out.println("PATH FROM " + start.getFullName() + " TO " + end.getFullName());
 
+        for (int z = 0; z < routePaths.size(); z++)
+        {
+            //setData(routePaths.get(z));
+            System.out.print("GEN ONE: ");
+            printPath(routePaths.get(z));
+            System.out.println("");
+        }
+
         ArrayList<Path> additionalPaths = new ArrayList<Path>();
         /*
             HEY
@@ -72,6 +80,9 @@ public class DataProcessor
                     String code = newPath.pathStops.get(newPath.pathStops.size() - 1).getCode();
                     ArrayList<Path> more = stageOne(DataProcessor.findStation(MainActivity.masterList, code), end); //first half
 
+                    //System.out.print("CUT PATH ON " + j + ": ");
+                    //printPath(newPath);
+
                     //System.out.println(newPath.pathStops.size());
 
                     for (int k = 0; k < more.size(); k++)
@@ -80,7 +91,7 @@ public class DataProcessor
 
                         if (more.get(k).pathStops.get(0).getCode().equals(start.getCode()) && more.get(k).pathStops.get(more.get(k).pathStops.size() - 1).getCode().equals(end.getCode()))
                         {
-                            if (!dupePath(routePaths, more.get(k)) && integrityCheck(more.get(k)))
+                            if (dupeCheck(routePaths, more.get(k)) && integrityCheck(more.get(k)))
                             {
                                 if (additionalPaths.size() == 0)
                                 {
@@ -88,7 +99,7 @@ public class DataProcessor
                                 }
                                 else
                                 {
-                                    if (!dupePath(additionalPaths, more.get(k)))
+                                    if (dupeCheck(additionalPaths, more.get(k)))
                                     {
                                         additionalPaths.add(more.get(k));
                                     }
@@ -98,6 +109,7 @@ public class DataProcessor
                     }
 
                     //break; // get out of inner loop
+                    newPath.pathStops.clear();
                 }
             }
         }
@@ -113,7 +125,13 @@ public class DataProcessor
         for (int z = 0; z < routePaths.size(); z++)
         {
             setData(routePaths.get(z));
+
+            System.out.print("FINAL: ");
+            printPath(routePaths.get(z));
+            System.out.println("");
         }
+
+        setOrder(routePaths);
 
         return routePaths;
     }
@@ -140,11 +158,12 @@ public class DataProcessor
             {
                 test.pathStops.add(start);              // add the start to the path
                 Collections.reverse(test.pathStops);    // then reverse to proper order
-
-                if (!pathGroup.contains(test) && !dupePath(pathGroup, test))
+                /*
+                if (!pathGroup.contains(test) && !dupeCheck(pathGroup, test))
                 {
                     pathGroup.add(test);    // this is what needs to be returned
-                }
+                } */
+                pathGroup.add(test);
             }
         }
 
@@ -152,36 +171,36 @@ public class DataProcessor
     }
 
     //checks two paths to see if their stops are the same
-    //returns true if there is a duplicate
-    private static boolean dupePath(ArrayList<Path> checklist, Path checkPath)
+    //returns true if valid, otherwise false
+    private static boolean dupeCheck(ArrayList<Path> checklist, Path checkPath)
     {
-        boolean dupe = false;
+        boolean valid = true;
+        String checkPathCode = "";
+
+        for (int j = 0; j < checkPath.pathStops.size(); j++) // this loop generates the checkPath pathcode
+        {
+            checkPathCode += checkPath.pathStops.get(j).getCode();
+        }
 
         for (int i = 0; i < checklist.size(); i++) // each path in the list
         {
-            Path temp = checklist.get(i);
+            Path current = checklist.get(i);
+            String currentPathCode = "";
 
-            if (temp.pathStops.size() == checkPath.pathStops.size())
+            for (int j = 0; j < current.pathStops.size(); j++) // this loop generates the current pathcode
             {
-                for (int j = 0; j < temp.pathStops.size(); j++) // each station in the path
-                {
-                    if (temp.pathStops.get(j).getCode().compareToIgnoreCase(checkPath.pathStops.get(j).getCode()) != 0)
-                    {
-                        dupe = false;
-                    }
-                    else
-                    {
-                        dupe = true;
-                        break;
-                    }
-                }
+                currentPathCode += current.pathStops.get(j).getCode();
             }
 
-            if (dupe)
-                break;
+            if (currentPathCode.equals(checkPathCode))
+            {
+                valid = false;
+                return valid;
+            }
+
         }
 
-        return dupe;
+        return valid;
     }
 
     // Integrity Check confirms that the Stations in the path are infact connected to each other
@@ -196,24 +215,19 @@ public class DataProcessor
         //if (!checkPath.pathStops.get(0).getCode().equals(checkPath.getStartCode()) || !checkPath.pathStops.get(last).getCode().equals(checkPath.getEndCode()))
             //return false;
 
-        for (int i = 0; i < last; i++)
+        for (int i = 0; i < last; i++) // Each station minus the last
         {
+            Station current = checkPath.pathStops.get(i);
             String next = checkPath.pathStops.get(i+1).getCode();
-            boolean control = false;
 
-            for (int j = 0; j < checkPath.pathStops.get(i).connectingStations.size(); j++)
+            if (!current.connectingStations.contains(next))
             {
-                //System.out.println("COMPARING " + checkPath.pathStops.get(i).connectingStations.get(j).split("-")[0] + " WITH " + next);
-
-                if (checkPath.pathStops.get(i).connectingStations.get(j).split("-")[0].equals(next))
-                {
-                    control = true;
-                    break;
-                }
+                System.out.print("INTEGRITY FAILED: ");
+                printPath(checkPath);
+                System.out.println("");
+                valid = false;
+                return valid;
             }
-
-            if (!control)
-                return false;
         }
 
         return valid;
@@ -224,6 +238,48 @@ public class DataProcessor
     private static void setData(Path thePath)
     {
         thePath.setNumStops();
+    }
+
+    // Sets the order so that the shortest path is at position zero, followed by the rest
+    // orders by number of stops, in the case of a tie then by num transfers
+    private static void setOrder(ArrayList<Path> pathGroup)
+    {
+        int shortIndex = 0;
+        int minStops = 100;
+        int minTransfers = 100;
+
+        for (int i = 0; i < pathGroup.size(); i++)
+        {
+            Path current = pathGroup.get(i);
+
+            if (current.getNumStops() == minStops)
+            {
+                if (current.getNumTransfers() < minTransfers)
+                {
+                    minTransfers = current.getNumTransfers();
+                    shortIndex = i;
+                }
+            }
+
+            if (current.getNumStops() < minStops)
+            {
+                minStops = current.getNumStops();
+                shortIndex = i;
+            }
+        }
+
+        Collections.swap(pathGroup, shortIndex, 0);
+
+    }
+
+    // Prints the stations of a path on a single line
+    // for debug purposes only
+    public static void printPath(Path pPath)
+    {
+        for (int i = 0; i < pPath.pathStops.size(); i++)
+        {
+            System.out.print(pPath.pathStops.get(i).getCode() + " ");
+        }
 
     }
 }
