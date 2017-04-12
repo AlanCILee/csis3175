@@ -1,13 +1,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <layer-list>
-            <item android:right="5dip" android:top="5dip">
+            <item android:right="5dip" android:top="5dip" android:bottom="2dip" android:left="2dip">
                 <shape>
-                    <corners android:radius="3dip" />
-                    <solid android:color="#D6D6D6" />
+                    <corners android:radius="4dip" />
+                    <solid android:color="?android:attr/colorAccent" />
                 </shape>
             </item>
-            <item android:bottom="3dip" android:left="3dip">
+            <item android:bottom="4dip" android:left="3dip" android:right="6dip" android:top="7dip">
                 <shape>
                     <gradient android:angle="270"
                         android:endColor="?android:attr/colorPrimaryDark" android:startColor="?android:attr/colorPrimary" />
