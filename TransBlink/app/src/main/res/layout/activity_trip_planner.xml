@@ -13,7 +13,7 @@
 
     <AutoCompleteTextView
         android:text=""
-        android:hint="Enter Destination Station here"
+        android:hint="Enter Destination Station"
         android:textColorHint="?android:attr/colorAccent"
         android:layout_width="300dip"
         android:background="@drawable/image_border"
@@ -36,23 +36,23 @@
         android:id="@+id/listViewPossibleRoutes"
         android:layout_below="@+id/buttonFindRoutes"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="3dip"
-        android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:paddingTop="3dip"
+        android:paddingBottom="4dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="4dip"
         android:divider="?android:attr/colorPrimaryDark"
         android:dividerHeight="2sp"
-        android:background="@drawable/list_selector" />
+        android:background="?android:attr/colorPrimary" />
 
     <AutoCompleteTextView
         android:text=""
-        android:hint="Enter Starting Station here"
+        android:hint="Enter Starting Station"
         android:textColorHint="?android:attr/colorAccent"
         android:background="@drawable/image_border"
-        android:paddingBottom="3dip"
-        android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:paddingTop="3dip"
+        android:paddingBottom="4dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="4dip"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/autoCompleteTextViewStarting"
@@ -72,6 +72,6 @@
         android:layout_below="@+id/autoCompleteTextViewEnding"
         android:layout_centerHorizontal="true"
         android:textColor="?android:attr/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
 </RelativeLayout>

@@ -11,5 +11,5 @@
     <string name="title_activity_maps">Map</string>
     <string name="themeLabel"><u>Select Theme</u></string>
     <string name="fontLabel"><u>Select Font</u></string>
-    <string name="routeLabel"><b><u>Station order of your route</u></b></string>
+    <string name="routeLabel"><b>Trip Plan</b></string>
 </resources>

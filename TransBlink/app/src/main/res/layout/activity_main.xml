@@ -24,7 +24,7 @@
         android:layout_marginBottom="30dip"
         android:layout_below="@+id/buttonGoToStationChoosing"
         android:layout_alignStart="@+id/buttonGoToStationChoosing"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <Button
         android:text="@string/btnThemes"
@@ -34,7 +34,7 @@
         android:id="@+id/buttonGoToTheme"
         android:background="@drawable/button_selector"
         android:textColor="?android:attr/colorAccent"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:layout_below="@+id/buttonGoToNearestStation"
         android:layout_marginBottom="30dip"
         android:layout_alignStart="@+id/buttonGoToStationChoosing" />
@@ -47,7 +47,7 @@
         android:id="@+id/buttonGoToStationChoosing"
         android:background="@drawable/button_selector"
         android:textColor="?android:attr/colorAccent"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:layout_below="@+id/imageViewTransBlinkLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dip"

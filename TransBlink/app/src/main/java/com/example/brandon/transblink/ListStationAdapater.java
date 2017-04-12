@@ -118,7 +118,7 @@ public class ListStationAdapater extends ArrayAdapter{
         txtTitle.setText("Path Option "+ (position+1) +": "+numOfStations+" Stops");
 
         if(numOfTransfers !=0){
-            transferInfo += numOfTransfers+ " time Transfer";
+            transferInfo += numOfTransfers+ " Time Transfer";
             for (int i=0; i<path.transferStations.size(); i++){
                 transferInfo += "\n";
                 transferInfo += (i+1)+ ": "+path.transferStations.get(i).getFullName();
