@@ -45,9 +45,9 @@ public class DataProcessor
     public static ArrayList<Path> findRoutes(Station start, Station end)
     {
         ArrayList<Path> routePaths = stageOne(start, end); // list of valid paths
-        System.out.println("FIRST GENERATION, " + routePaths.size() + " PATHS CREATED");
-        System.out.println("PATH FROM " + start.getFullName() + " TO " + end.getFullName());
-
+        //System.out.println("FIRST GENERATION, " + routePaths.size() + " PATHS CREATED");
+        //System.out.println("PATH FROM " + start.getFullName() + " TO " + end.getFullName());
+        /*
         for (int z = 0; z < routePaths.size(); z++)
         {
             //setData(routePaths.get(z));
@@ -55,7 +55,7 @@ public class DataProcessor
             printPath(routePaths.get(z));
             System.out.println("");
         }
-
+        */
         ArrayList<Path> additionalPaths = new ArrayList<Path>();
         /*
             HEY
@@ -114,7 +114,7 @@ public class DataProcessor
             }
         }
 
-        System.out.println("SECOND GENERATION, " + additionalPaths.size() + " PATHS CREATED");
+        //System.out.println("SECOND GENERATION, " + additionalPaths.size() + " PATHS CREATED");
 
         for (int z = 0; z < additionalPaths.size(); z++)
         {
@@ -126,9 +126,9 @@ public class DataProcessor
         {
             setData(routePaths.get(z));
 
-            System.out.print("FINAL: ");
-            printPath(routePaths.get(z));
-            System.out.println("");
+            //System.out.print("FINAL: ");
+            //printPath(routePaths.get(z));
+            //System.out.println("");
         }
 
         setOrder(routePaths);
@@ -222,9 +222,9 @@ public class DataProcessor
 
             if (!current.connectingStations.contains(next))
             {
-                System.out.print("INTEGRITY FAILED: ");
-                printPath(checkPath);
-                System.out.println("");
+                //System.out.print("INTEGRITY FAILED: ");
+                //printPath(checkPath);
+                //System.out.println("");
                 valid = false;
                 return valid;
             }
